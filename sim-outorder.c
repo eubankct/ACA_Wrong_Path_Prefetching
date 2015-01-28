@@ -338,6 +338,9 @@ static counter_t RUU_fcount;		/* cumulative RUU full count */
 static counter_t LSQ_count;		/* cumulative LSQ occupancy */
 static counter_t LSQ_fcount;		/* cumulative LSQ full count */
 
+/* RUU dispatch counters */
+static struct stat_stat_t *RUU_issue;
+
 /* total non-speculative bogus addresses seen (debug var) */
 static counter_t sim_invalid_addrs;
 
@@ -1285,6 +1288,9 @@ sim_reg_stats(struct stat_sdb_t *sdb)   /* stats database */
   stat_reg_formula(sdb, "lsq_full", "fraction of time (cycle's) LSQ was full",
                    "LSQ_fcount / sim_cycle", /* format */NULL);
 
+  RUU_issue = stat_reg_dist(sdb, "RUU_issue_stats", "Number of cycles each number of insts was issued.",
+			0, ruu_issue_width + 1, 1, PF_ALL, NULL, NULL, NULL);
+
   stat_reg_counter(sdb, "sim_slip",
                    "total number of slip cycles",
                    &sim_slip, 0, NULL);
@@ -1546,6 +1552,19 @@ ruu_init(void)
   RUU_head = RUU_tail = 0;
   RUU_count = 0;
   RUU_fcount = 0;
+
+  /*RUU_0count = 0;
+  RUU_1count = 0;
+  RUU_2count = 0;
+  RUU_3count = 0;
+  RUU_4count = 0;
+  RUU_5count = 0;
+  RUU_6count = 0;
+  RUU_7count = 0;
+  RUU_8count = 0;
+  int i;
+  for(i = 0; i < sizeof(RUU_issue)/sizeof(counter_t); i++)
+	RUU_issue[i] = 0;*/
 }
 
 /* dump the contents of the RUU */
@@ -2607,7 +2626,8 @@ lsq_refresh(void)
    is available in this cycle to commence execution of the operation; if all
    goes well, the function unit is allocated, a writeback event is scheduled,
    and the instruction begins execution */
-static void
+//static void
+static int
 ruu_issue(void)
 {
   int i, load_lat, tlb_lat, n_issued;
@@ -2842,6 +2862,7 @@ ruu_issue(void)
          queue is always properly sorted */
       RSLINK_FREE(node);
     }
+  return n_issued;
 }
 
 
@@ -4564,7 +4585,7 @@ sim_main(void)
 
 	  /* issue operations ready to execute from a previous cycle */
 	  /* <== drains ready queue <-- ready operations commence execution */
-	  ruu_issue();
+	  stat_add_sample(RUU_issue, ruu_issue());
 	}
 
       /* decode and dispatch new operations */
@@ -4579,7 +4600,7 @@ sim_main(void)
 
 	  /* issue operations ready to execute from a previous cycle */
 	  /* <== drains ready queue <-- ready operations commence execution */
-	  ruu_issue();
+	  stat_add_sample(RUU_issue, ruu_issue());
 	}
 
       /* call instruction fetch unit if it is not blocked */
