@@ -2,20 +2,20 @@
 
 /* SimpleScalar(TM) Tool Suite
  * Copyright (C) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
- * All Rights Reserved. 
- * 
+ * All Rights Reserved.
+ *
  * THIS IS A LEGAL DOCUMENT, BY USING SIMPLESCALAR,
  * YOU ARE AGREEING TO THESE TERMS AND CONDITIONS.
- * 
+ *
  * No portion of this work may be used by any commercial entity, or for any
  * commercial purpose, without the prior, written permission of SimpleScalar,
  * LLC (info@simplescalar.com). Nonprofit and noncommercial use is permitted
  * as described below.
- * 
+ *
  * 1. SimpleScalar is provided AS IS, with no warranty of any kind, express
  * or implied. The user of the program accepts full responsibility for the
  * application of the program and the use of any results.
- * 
+ *
  * 2. Nonprofit and noncommercial use is encouraged. SimpleScalar may be
  * downloaded, compiled, executed, copied, and modified solely for nonprofit,
  * educational, noncommercial research, and noncommercial scholarship
@@ -24,13 +24,13 @@
  * solely for nonprofit, educational, noncommercial research, and
  * noncommercial scholarship purposes provided that this notice in its
  * entirety accompanies all copies.
- * 
+ *
  * 3. ALL COMMERCIAL USE, AND ALL USE BY FOR PROFIT ENTITIES, IS EXPRESSLY
  * PROHIBITED WITHOUT A LICENSE FROM SIMPLESCALAR, LLC (info@simplescalar.com).
- * 
+ *
  * 4. No nonprofit user may place any restrictions on the use of this software,
  * including as modified by the user, by any other authorized user.
- * 
+ *
  * 5. Noncommercial and nonprofit users may distribute copies of SimpleScalar
  * in compiled or executable form as set forth in Section 2, provided that
  * either: (A) it is accompanied by the corresponding machine-readable source
@@ -40,11 +40,11 @@
  * must permit verbatim duplication by anyone, or (C) it is distributed by
  * someone who received only the executable form, and is accompanied by a
  * copy of the written offer of source code.
- * 
+ *
  * 6. SimpleScalar was developed by Todd M. Austin, Ph.D. The tool suite is
  * currently maintained by SimpleScalar LLC (info@simplescalar.com). US Mail:
  * 2395 Timbercrest Court, Ann Arbor, MI 48105.
- * 
+ *
  * Copyright (C) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
  */
 
@@ -103,7 +103,7 @@ extern int ptrace_oneshot;
 /* open pipeline trace */
 void
 ptrace_open(char *range,		/* trace range */
-	    char *fname);		/* output filename */
+            char *fname);		/* output filename */
 
 /* close pipeline trace */
 void
@@ -135,16 +135,16 @@ ptrace_close(void);
 /* declare a new instruction */
 void
 __ptrace_newinst(unsigned int iseq,	/* instruction sequence number */
-		 md_inst_t inst,	/* new instruction */
-		 md_addr_t pc,		/* program counter of instruction */
-		 md_addr_t addr);	/* address referenced, if load/store */
+                 md_inst_t inst,	/* new instruction */
+                 md_addr_t pc,		/* program counter of instruction */
+                 md_addr_t addr);	/* address referenced, if load/store */
 
 /* declare a new uop */
 void
 __ptrace_newuop(unsigned int iseq,	/* instruction sequence number */
-		char *uop_desc,		/* new uop description */
-		md_addr_t pc,		/* program counter of instruction */
-		md_addr_t addr);	/* address referenced, if load/store */
+                char *uop_desc,		/* new uop description */
+                md_addr_t pc,		/* program counter of instruction */
+                md_addr_t addr);	/* address referenced, if load/store */
 
 /* declare instruction retirement or squash */
 void
@@ -157,7 +157,7 @@ __ptrace_newcycle(tick_t cycle);	/* new cycle */
 /* indicate instruction transition to a new pipeline stage */
 void
 __ptrace_newstage(unsigned int iseq,	/* instruction sequence number */
-		  char *pstage,		/* pipeline stage entered */
-		  unsigned int pevents);/* pipeline events while in stage */
+                  char *pstage,		/* pipeline stage entered */
+                  unsigned int pevents);/* pipeline events while in stage */
 
 #endif /* PTRACE_H */

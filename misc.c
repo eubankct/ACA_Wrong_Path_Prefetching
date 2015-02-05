@@ -2,20 +2,20 @@
 
 /* SimpleScalar(TM) Tool Suite
  * Copyright (C) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
- * All Rights Reserved. 
- * 
+ * All Rights Reserved.
+ *
  * THIS IS A LEGAL DOCUMENT, BY USING SIMPLESCALAR,
  * YOU ARE AGREEING TO THESE TERMS AND CONDITIONS.
- * 
+ *
  * No portion of this work may be used by any commercial entity, or for any
  * commercial purpose, without the prior, written permission of SimpleScalar,
  * LLC (info@simplescalar.com). Nonprofit and noncommercial use is permitted
  * as described below.
- * 
+ *
  * 1. SimpleScalar is provided AS IS, with no warranty of any kind, express
  * or implied. The user of the program accepts full responsibility for the
  * application of the program and the use of any results.
- * 
+ *
  * 2. Nonprofit and noncommercial use is encouraged. SimpleScalar may be
  * downloaded, compiled, executed, copied, and modified solely for nonprofit,
  * educational, noncommercial research, and noncommercial scholarship
@@ -24,13 +24,13 @@
  * solely for nonprofit, educational, noncommercial research, and
  * noncommercial scholarship purposes provided that this notice in its
  * entirety accompanies all copies.
- * 
+ *
  * 3. ALL COMMERCIAL USE, AND ALL USE BY FOR PROFIT ENTITIES, IS EXPRESSLY
  * PROHIBITED WITHOUT A LICENSE FROM SIMPLESCALAR, LLC (info@simplescalar.com).
- * 
+ *
  * 4. No nonprofit user may place any restrictions on the use of this software,
  * including as modified by the user, by any other authorized user.
- * 
+ *
  * 5. Noncommercial and nonprofit users may distribute copies of SimpleScalar
  * in compiled or executable form as set forth in Section 2, provided that
  * either: (A) it is accompanied by the corresponding machine-readable source
@@ -40,11 +40,11 @@
  * must permit verbatim duplication by anyone, or (C) it is distributed by
  * someone who received only the executable form, and is accompanied by a
  * copy of the written offer of source code.
- * 
+ *
  * 6. SimpleScalar was developed by Todd M. Austin, Ph.D. The tool suite is
  * currently maintained by SimpleScalar LLC (info@simplescalar.com). US Mail:
  * 2395 Timbercrest Court, Ann Arbor, MI 48105.
- * 
+ *
  * Copyright (C) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
  */
 
@@ -80,7 +80,7 @@ static void (*hook_fn)(FILE *stream) = NULL;
 void
 fatal_hook(void (*fn)(FILE *stream))	/* fatal hook function */
 {
-  hook_fn = fn;
+    hook_fn = fn;
 }
 
 /* declare a fatal run-time error, calls fatal hook function */
@@ -92,19 +92,19 @@ void
 fatal(char *fmt, ...)
 #endif /* __GNUC__ */
 {
-  va_list v;
-  va_start(v, fmt);
+    va_list v;
+    va_start(v, fmt);
 
-  fprintf(stderr, "fatal: ");
-  myvfprintf(stderr, fmt, v);
+    fprintf(stderr, "fatal: ");
+    myvfprintf(stderr, fmt, v);
 #ifdef __GNUC__
-  if (verbose)
-    fprintf(stderr, " [%s:%s, line %d]", func, file, line);
+    if (verbose)
+        fprintf(stderr, " [%s:%s, line %d]", func, file, line);
 #endif /* __GNUC__ */
-  fprintf(stderr, "\n");
-  if (hook_fn)
-    (*hook_fn)(stderr);
-  exit(1);
+    fprintf(stderr, "\n");
+    if (hook_fn)
+        (*hook_fn)(stderr);
+    exit(1);
 }
 
 /* declare a panic situation, dumps core */
@@ -116,18 +116,18 @@ void
 panic(char *fmt, ...)
 #endif /* __GNUC__ */
 {
-  va_list v;
-  va_start(v, fmt);
+    va_list v;
+    va_start(v, fmt);
 
-  fprintf(stderr, "panic: ");
-  myvfprintf(stderr, fmt, v);
+    fprintf(stderr, "panic: ");
+    myvfprintf(stderr, fmt, v);
 #ifdef __GNUC__
-  fprintf(stderr, " [%s:%s, line %d]", func, file, line);
+    fprintf(stderr, " [%s:%s, line %d]", func, file, line);
 #endif /* __GNUC__ */
-  fprintf(stderr, "\n");
-  if (hook_fn)
-    (*hook_fn)(stderr);
-  abort();
+    fprintf(stderr, "\n");
+    if (hook_fn)
+        (*hook_fn)(stderr);
+    abort();
 }
 
 /* declare a warning */
@@ -139,16 +139,16 @@ void
 warn(char *fmt, ...)
 #endif /* __GNUC__ */
 {
-  va_list v;
-  va_start(v, fmt);
+    va_list v;
+    va_start(v, fmt);
 
-  fprintf(stderr, "warning: ");
-  myvfprintf(stderr, fmt, v);
+    fprintf(stderr, "warning: ");
+    myvfprintf(stderr, fmt, v);
 #ifdef __GNUC__
-  if (verbose)
-    fprintf(stderr, " [%s:%s, line %d]", func, file, line);
+    if (verbose)
+        fprintf(stderr, " [%s:%s, line %d]", func, file, line);
 #endif /* __GNUC__ */
-  fprintf(stderr, "\n");
+    fprintf(stderr, "\n");
 }
 
 /* print general information */
@@ -160,15 +160,15 @@ void
 info(char *fmt, ...)
 #endif /* __GNUC__ */
 {
-  va_list v;
-  va_start(v, fmt);
+    va_list v;
+    va_start(v, fmt);
 
-  myvfprintf(stderr, fmt, v);
+    myvfprintf(stderr, fmt, v);
 #ifdef __GNUC__
-  if (verbose)
-    fprintf(stderr, " [%s:%s, line %d]", func, file, line);
+    if (verbose)
+        fprintf(stderr, " [%s:%s, line %d]", func, file, line);
 #endif /* __GNUC__ */
-  fprintf(stderr, "\n");
+    fprintf(stderr, "\n");
 }
 
 #ifdef DEBUG
@@ -185,14 +185,14 @@ debug(char *fmt, ...)
     va_start(v, fmt);
 
     if (debugging)
-      {
+    {
         fprintf(stderr, "debug: ");
         myvfprintf(stderr, fmt, v);
 #ifdef __GNUC__
         fprintf(stderr, " [%s:%s, line %d]", func, file, line);
 #endif
         fprintf(stderr, "\n");
-      }
+    }
 }
 #endif /* DEBUG */
 
@@ -202,9 +202,9 @@ void
 mysrand(unsigned int seed)	/* random number generator seed */
 {
 #if defined(hpux) || defined(__hpux) || defined(__svr4__) || defined(_MSC_VER)
-      srand(seed);
+    srand(seed);
 #else
-      srandom(seed);
+    srandom(seed);
 #endif
 }
 
@@ -213,13 +213,13 @@ int
 myrand(void)			/* returns random number */
 {
 #if !defined(__alpha) && !defined(unix)
-  extern long random(void);
+    extern long random(void);
 #endif
 
 #if defined(hpux) || defined(__hpux) || defined(__svr4__) || defined(_MSC_VER)
-  return rand();
+    return rand();
 #else
-  return random();
+    return random();
 #endif
 }
 
@@ -228,26 +228,28 @@ myrand(void)			/* returns random number */
 char *				/* duplicated string */
 mystrdup(char *s)		/* string to duplicate to heap storage */
 {
-  char *buf;
+    char *buf;
 
-  if (!(buf = (char *)malloc(strlen(s)+1)))
-    return NULL;
-  strcpy(buf, s);
-  return buf;
+    if (!(buf = (char *)malloc(strlen(s)+1)))
+        return NULL;
+    strcpy(buf, s);
+    return buf;
 }
 
 /* find the last occurrence of a character in a string */
 char *
 mystrrchr(char *s, char c)
 {
-  char *rtnval = 0;
+    char *rtnval = 0;
 
-  do {
-    if (*s == c)
-      rtnval = s;
-  } while (*s++);
+    do
+    {
+        if (*s == c)
+            rtnval = s;
+    }
+    while (*s++);
 
-  return rtnval;
+    return rtnval;
 }
 
 /* case insensitive string compare (NOTE: many machines are missing this
@@ -255,17 +257,19 @@ mystrrchr(char *s, char c)
 int				/* compare result, see strcmp() */
 mystricmp(char *s1, char *s2)	/* strings to compare, case insensitive */
 {
-  unsigned char u1, u2;
+    unsigned char u1, u2;
 
-  for (;;)
+    for (;;)
     {
-      u1 = (unsigned char)*s1++; u1 = tolower(u1);
-      u2 = (unsigned char)*s2++; u2 = tolower(u2);
+        u1 = (unsigned char)*s1++;
+        u1 = tolower(u1);
+        u2 = (unsigned char)*s2++;
+        u2 = tolower(u2);
 
-      if (u1 != u2)
-	return u1 - u2;
-      if (u1 == '\0')
-	return 0;
+        if (u1 != u2)
+            return u1 - u2;
+        if (u1 == '\0')
+            return 0;
     }
 }
 
@@ -274,24 +278,24 @@ mystricmp(char *s1, char *s2)	/* strings to compare, case insensitive */
 void *
 getcore(int nbytes)
 {
-  return calloc(nbytes, 1);
+    return calloc(nbytes, 1);
 
 #if 0 /* FIXME: sbrk() calls break malloc() on Linux... */
 #if !defined(PURIFY) && !defined(_MSC_VER)
-  void *p = (void *)sbrk(nbytes);
+    void *p = (void *)sbrk(nbytes);
 
-  if (p == (void *)-1)
-    return NULL;
+    if (p == (void *)-1)
+        return NULL;
 
-  /* this may be superfluous */
+    /* this may be superfluous */
 #if defined(__svr4__) || defined(_MSC_VER)
-  memset(p, '\0', nbytes);
+    memset(p, '\0', nbytes);
 #else /* !defined(__svr4__) */
-  bzero(p, nbytes);
+    bzero(p, nbytes);
 #endif
-  return p;
+    return p;
 #else
-  return calloc(nbytes, 1);
+    return calloc(nbytes, 1);
 #endif /* PURIFY */
 #endif
 }
@@ -300,58 +304,58 @@ getcore(int nbytes)
 int
 log_base2(int n)
 {
-  int power = 0;
+    int power = 0;
 
-  if (n <= 0 || (n & (n-1)) != 0)
-    panic("log2() only works for positive power of two values");
+    if (n <= 0 || (n & (n-1)) != 0)
+        panic("log2() only works for positive power of two values");
 
-  while (n >>= 1)
-    power++;
+    while (n >>= 1)
+        power++;
 
-  return power;
+    return power;
 }
 
 /* return string describing elapsed time, passed in SEC in seconds */
 char *
 elapsed_time(long sec)
 {
-  static char tstr[256];
-  char temp[256];
+    static char tstr[256];
+    char temp[256];
 
-  if (sec <= 0)
-    return "0s";
+    if (sec <= 0)
+        return "0s";
 
-  tstr[0] = '\0';
+    tstr[0] = '\0';
 
-  /* days */
-  if (sec >= 86400)
+    /* days */
+    if (sec >= 86400)
     {
-      sprintf(temp, "%ldD ", sec/86400);
-      strcat(tstr, temp);
-      sec = sec % 86400;
+        sprintf(temp, "%ldD ", sec/86400);
+        strcat(tstr, temp);
+        sec = sec % 86400;
     }
-  /* hours */
-  if (sec >= 3600)
+    /* hours */
+    if (sec >= 3600)
     {
-      sprintf(temp, "%ldh ", sec/3600);
-      strcat(tstr, temp);
-      sec = sec % 3600;
+        sprintf(temp, "%ldh ", sec/3600);
+        strcat(tstr, temp);
+        sec = sec % 3600;
     }
-  /* mins */
-  if (sec >= 60)
+    /* mins */
+    if (sec >= 60)
     {
-      sprintf(temp, "%ldm ", sec/60);
-      strcat(tstr, temp);
-      sec = sec % 60;
+        sprintf(temp, "%ldm ", sec/60);
+        strcat(tstr, temp);
+        sec = sec % 60;
     }
-  /* secs */
-  if (sec >= 1)
+    /* secs */
+    if (sec >= 1)
     {
-      sprintf(temp, "%lds ", sec);
-      strcat(tstr, temp);
+        sprintf(temp, "%lds ", sec);
+        strcat(tstr, temp);
     }
-  tstr[strlen(tstr)-1] = '\0';
-  return tstr;
+    tstr[strlen(tstr)-1] = '\0';
+    return tstr;
 }
 
 /* assume bit positions numbered 31 to 0 (31 high order bit), extract num bits
@@ -400,344 +404,347 @@ typedef word_t largeint_t;
 static int
 _lowdigit(slargeint_t *valptr)
 {
-  /* this function computes the decimal low-order digit of the number pointed
-     to by valptr, and returns this digit after dividing *valptr by ten; this
-     function is called ONLY to compute the low-order digit of a long whose
-     high-order bit is set */
+    /* this function computes the decimal low-order digit of the number pointed
+       to by valptr, and returns this digit after dividing *valptr by ten; this
+       function is called ONLY to compute the low-order digit of a long whose
+       high-order bit is set */
 
-  int lowbit = (int)(*valptr & 1);
-  slargeint_t value = (*valptr >> 1) & ~HIBITL;
+    int lowbit = (int)(*valptr & 1);
+    slargeint_t value = (*valptr >> 1) & ~HIBITL;
 
-  *valptr = value / 5;
-  return (int)(value % 5 * 2 + lowbit + '0');
+    *valptr = value / 5;
+    return (int)(value % 5 * 2 + lowbit + '0');
 }
 
 /* portable vsprintf with qword support, returns end pointer */
 char *
 myvsprintf(char *obuf, char *format, va_list v)
 {
-  static char _blanks[] = "                    ";
-  static char _zeroes[] = "00000000000000000000";
+    static char _blanks[] = "                    ";
+    static char _zeroes[] = "00000000000000000000";
 
-  /* counts output characters */
-  int count = 0;
+    /* counts output characters */
+    int count = 0;
 
-  /* format code */
-  int fcode;
+    /* format code */
+    int fcode;
 
-  /* field width and precision */
-  int width, prec;
+    /* field width and precision */
+    int width, prec;
 
-  /* number of padding zeroes required on the left and right */
-  int lzero;
+    /* number of padding zeroes required on the left and right */
+    int lzero;
 
-  /* length of prefix */
-  int prefixlength;
+    /* length of prefix */
+    int prefixlength;
 
-  /* combined length of leading zeroes, trailing zeroes, and suffix */
-  int otherlength;
+    /* combined length of leading zeroes, trailing zeroes, and suffix */
+    int otherlength;
 
-  /* format flags */
+    /* format flags */
 #define PADZERO		0x0001	/* padding zeroes requested via '0' */
 #define RZERO		0x0002	/* there will be trailing zeros in output */
 #define LZERO		0x0004	/* there will be leading zeroes in output */
 #define DOTSEEN		0x0008	/* dot appeared in format specification */
 #define LENGTH		0x0010	/* l */
-  int flagword;
+    int flagword;
 
-  /* maximum number of digits in printable number */
+    /* maximum number of digits in printable number */
 #define MAXDIGS		22
 
-  /* starting and ending points for value to be printed */
-  char *bp, *p;
+    /* starting and ending points for value to be printed */
+    char *bp, *p;
 
-  /* work variables */
-  int k, lradix, mradix;
+    /* work variables */
+    int k, lradix, mradix;
 
-  /* pointer to sign, "0x", "0X", or empty */
-  char *prefix;
+    /* pointer to sign, "0x", "0X", or empty */
+    char *prefix;
 
-  /* values are developed in this buffer */
-  static char buf[MAXDIGS*4], buf1[MAXDIGS*4];
+    /* values are developed in this buffer */
+    static char buf[MAXDIGS*4], buf1[MAXDIGS*4];
 
-  /* pointer to a translate table for digits of whatever radix */
-  char *tab;
+    /* pointer to a translate table for digits of whatever radix */
+    char *tab;
 
-  /* value being converted, if integer */
-  slargeint_t val;
+    /* value being converted, if integer */
+    slargeint_t val;
 
-  /* value being converted, if floating point */
-  dfloat_t fval;
+    /* value being converted, if floating point */
+    dfloat_t fval;
 
-  for (;;)
+    for (;;)
     {
-      int n;
+        int n;
 
-      while ((fcode = *format) != '\0' && fcode != '%')
-	{
-	  *obuf++ = fcode;
-	  format++;
-	  count++;
-	}
+        while ((fcode = *format) != '\0' && fcode != '%')
+        {
+            *obuf++ = fcode;
+            format++;
+            count++;
+        }
 
-      if (fcode == '\0')
-	{
-	  /* end of format; terminate and return */
-	  *obuf = '\0';
-	  return obuf;
-	}
+        if (fcode == '\0')
+        {
+            /* end of format; terminate and return */
+            *obuf = '\0';
+            return obuf;
+        }
 
 
-      /* % has been found, the following switch is used to parse the format
-	 specification and to perform the operation specified by the format
-	 letter; the program repeatedly goes back to this switch until the
-	 format letter is encountered */
+        /* % has been found, the following switch is used to parse the format
+        specification and to perform the operation specified by the format
+         letter; the program repeatedly goes back to this switch until the
+         format letter is encountered */
 
-      width = prefixlength = otherlength = flagword = 0;
-      format++;
+        width = prefixlength = otherlength = flagword = 0;
+        format++;
 
-    charswitch:
-      switch (fcode = *format++)
-	{
-	case '0': /* means pad with leading zeros */
-	  flagword |= PADZERO;
-	case '1':
-	case '2':
-	case '3':
-	case '4':
-	case '5':
-	case '6':
-	case '7':
-	case '8':
-	case '9':
-	  {
-	    int num = fcode - '0';
-	    while (isdigit(fcode = *format))
-	      {
-		num = num * 10 + fcode - '0';
-		format++;
-	      }
-	    if (flagword & DOTSEEN)
-	      prec = num;
-	    else
-	      width = num;
-	    goto charswitch;
-	  }
+charswitch:
+        switch (fcode = *format++)
+        {
+        case '0': /* means pad with leading zeros */
+            flagword |= PADZERO;
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+        {
+            int num = fcode - '0';
+            while (isdigit(fcode = *format))
+            {
+                num = num * 10 + fcode - '0';
+                format++;
+            }
+            if (flagword & DOTSEEN)
+                prec = num;
+            else
+                width = num;
+            goto charswitch;
+        }
 
-	case '.':
-	  flagword |= DOTSEEN;
-	  goto charswitch;
+        case '.':
+            flagword |= DOTSEEN;
+            goto charswitch;
 
-	case 'l':
-	  flagword |= LENGTH;
-	  goto charswitch;
+        case 'l':
+            flagword |= LENGTH;
+            goto charswitch;
 
-	case 'n': /* host counter */
+        case 'n': /* host counter */
 #ifdef HOST_HAS_QWORD
-	  flagword |= LENGTH;
-	  /* fallthru */
+            flagword |= LENGTH;
+            /* fallthru */
 #else /* !HOST_HAS_QWORD */
-	  flagword |= DOTSEEN;
-	  if (!width)
-	    width = 12;
-	  prec = 0;
-	  goto process_float;
+            flagword |= DOTSEEN;
+            if (!width)
+                width = 12;
+            prec = 0;
+            goto process_float;
 #endif /* HOST_HAS_QWORD */
-	  
-	case 'd':
-	  /* fetch the argument to be printed */
-	  if (flagword & LENGTH)
-	    val = va_arg(v, slargeint_t);
-	  else
-	    val = (slargeint_t)va_arg(v, sword_t);
 
-	  /* set buffer pointer to last digit */
-	  p = bp = buf + MAXDIGS;
+        case 'd':
+            /* fetch the argument to be printed */
+            if (flagword & LENGTH)
+                val = va_arg(v, slargeint_t);
+            else
+                val = (slargeint_t)va_arg(v, sword_t);
 
-	  /* If signed conversion, make sign */
-	  if (val < 0)
-	    {
-	      prefix = "-";
-	      prefixlength = 1;
-	      /* negate, checking in advance for possible overflow */
-	      if (val != (slargeint_t)HIBITL)
-		val = -val;
-	      else
-		{
-		  /* number is -HIBITL; convert last digit and get pos num */
-		  *--bp = _lowdigit(&val);
-		}
-	    }
+            /* set buffer pointer to last digit */
+            p = bp = buf + MAXDIGS;
 
-	decimal:
-	  {
-	    slargeint_t qval = val;
+            /* If signed conversion, make sign */
+            if (val < 0)
+            {
+                prefix = "-";
+                prefixlength = 1;
+                /* negate, checking in advance for possible overflow */
+                if (val != (slargeint_t)HIBITL)
+                    val = -val;
+                else
+                {
+                    /* number is -HIBITL; convert last digit and get pos num */
+                    *--bp = _lowdigit(&val);
+                }
+            }
 
-	    if (qval <= 9)
-	      *--bp = (int)qval + '0';
-	    else
-	      {
-		do {
-		  n = (int)qval;
-		  qval /= 10;
-		  *--bp = n - (int)qval * 10 + '0';
-		}
-		while (qval > 9);
-		*--bp = (int)qval + '0';
-	      }
-	  }
-	  break;
+decimal:
+            {
+                slargeint_t qval = val;
 
-	case 'u':
-	  /* fetch the argument to be printed */
-	  if (flagword & LENGTH)
-	    val = va_arg(v, largeint_t);
-	  else
-	    val = (largeint_t)va_arg(v, word_t);
+                if (qval <= 9)
+                    *--bp = (int)qval + '0';
+                else
+                {
+                    do
+                    {
+                        n = (int)qval;
+                        qval /= 10;
+                        *--bp = n - (int)qval * 10 + '0';
+                    }
+                    while (qval > 9);
+                    *--bp = (int)qval + '0';
+                }
+            }
+            break;
 
-	  /* set buffer pointer to last digit */
-	  p = bp = buf + MAXDIGS;
+        case 'u':
+            /* fetch the argument to be printed */
+            if (flagword & LENGTH)
+                val = va_arg(v, largeint_t);
+            else
+                val = (largeint_t)va_arg(v, word_t);
 
-	  if (val & HIBITL)
-	    *--bp = _lowdigit(&val);
-	  goto decimal;
+            /* set buffer pointer to last digit */
+            p = bp = buf + MAXDIGS;
 
-	case 'o':
-	  mradix = 7;
-	  lradix = 2;
-	  goto fixed;
+            if (val & HIBITL)
+                *--bp = _lowdigit(&val);
+            goto decimal;
 
-	case 'p': /* target address */
-	  if (sizeof(md_addr_t) > 4)
-	    flagword |= LENGTH;
-	  /* fallthru */
+        case 'o':
+            mradix = 7;
+            lradix = 2;
+            goto fixed;
 
-	case 'X':
-	case 'x':
-	  mradix = 15;
-	  lradix = 3;
+        case 'p': /* target address */
+            if (sizeof(md_addr_t) > 4)
+                flagword |= LENGTH;
+            /* fallthru */
 
-	fixed:
-	  /* fetch the argument to be printed */
-	  if (flagword & LENGTH)
-	    val = va_arg(v, largeint_t);
-	  else
-	    val = (largeint_t)va_arg(v, word_t);
+        case 'X':
+        case 'x':
+            mradix = 15;
+            lradix = 3;
 
-	  /* set translate table for digits */
-	  tab = (fcode == 'X') ? "0123456789ABCDEF" : "0123456789abcdef";
+fixed:
+            /* fetch the argument to be printed */
+            if (flagword & LENGTH)
+                val = va_arg(v, largeint_t);
+            else
+                val = (largeint_t)va_arg(v, word_t);
 
-	  /* develop the digits of the value */
-	  p = bp = buf + MAXDIGS;
+            /* set translate table for digits */
+            tab = (fcode == 'X') ? "0123456789ABCDEF" : "0123456789abcdef";
 
-	  {
-	    slargeint_t qval = val;
+            /* develop the digits of the value */
+            p = bp = buf + MAXDIGS;
 
-	    if (qval == 0)
-	      {
-		otherlength = lzero = 1;
-		flagword |= LZERO;
-	      }
-	    else
-	      do {
-		*--bp = tab[qval & mradix];
-		qval = ((qval >> 1) & ~HIBITL) >> lradix;
-	      } while (qval != 0);
-	  }
-	  break;
+            {
+                slargeint_t qval = val;
+
+                if (qval == 0)
+                {
+                    otherlength = lzero = 1;
+                    flagword |= LZERO;
+                }
+                else
+                    do
+                    {
+                        *--bp = tab[qval & mradix];
+                        qval = ((qval >> 1) & ~HIBITL) >> lradix;
+                    }
+                    while (qval != 0);
+            }
+            break;
 
 #ifndef HOST_HAS_QWORD
-	process_float:
+process_float:
 #endif /* !HOST_HAS_QWORD */
 
-	case 'f':
-	  if (flagword & DOTSEEN)
-	    sprintf(buf1, "%%%d.%df", width, prec);
-	  else if (width)
-	    sprintf(buf1, "%%%df", width);
-	  else
-	    sprintf(buf1, "%%f");
+        case 'f':
+            if (flagword & DOTSEEN)
+                sprintf(buf1, "%%%d.%df", width, prec);
+            else if (width)
+                sprintf(buf1, "%%%df", width);
+            else
+                sprintf(buf1, "%%f");
 
-	  /* fetch the argument to be printed */
-	  fval = va_arg(v, dfloat_t);
+            /* fetch the argument to be printed */
+            fval = va_arg(v, dfloat_t);
 
-	  /* print floating point value */
-	  sprintf(buf, buf1, fval);
-	  bp = buf;
-	  p = bp + strlen(bp);
-	  break;
+            /* print floating point value */
+            sprintf(buf, buf1, fval);
+            bp = buf;
+            p = bp + strlen(bp);
+            break;
 
-	case 's':
-	  bp = va_arg(v, char *);
-	  if (bp == NULL)
-	    bp = "(null)";
-	  p = bp + strlen(bp);
-	  break;
+        case 's':
+            bp = va_arg(v, char *);
+            if (bp == NULL)
+                bp = "(null)";
+            p = bp + strlen(bp);
+            break;
 
-	case '%':
-	  buf[0] = fcode;
-	  goto c_merge;
+        case '%':
+            buf[0] = fcode;
+            goto c_merge;
 
-	case 'c':
-	  buf[0] = va_arg(v, int);
-	c_merge:
-	  p = (bp = &buf[0]) + 1;
-	  break;
+        case 'c':
+            buf[0] = va_arg(v, int);
+c_merge:
+            p = (bp = &buf[0]) + 1;
+            break;
 
-	default:
-	  /* this is technically an error; what we do is to back up the format
-             pointer to the offending char and continue with the format scan */
-	  format--;
-	  continue;
-	}
+        default:
+            /* this is technically an error; what we do is to back up the format
+                   pointer to the offending char and continue with the format scan */
+            format--;
+            continue;
+        }
 
-      /* calculate number of padding blanks */
-      k = (n = p - bp) + prefixlength + otherlength;
-      if (width <= k)
-	count += k;
-      else
-	{
-	  count += width;
+        /* calculate number of padding blanks */
+        k = (n = p - bp) + prefixlength + otherlength;
+        if (width <= k)
+            count += k;
+        else
+        {
+            count += width;
 
-	  /* set up for padding zeroes if requested; otherwise emit padding
-             blanks unless output is to be left-justified */
-	  if (flagword & PADZERO)
-	    {
-	      if (!(flagword & LZERO))
-		{
-		  flagword |= LZERO;
-		  lzero = width - k;
-		}
-	      else
-		lzero += width - k;
+            /* set up for padding zeroes if requested; otherwise emit padding
+                   blanks unless output is to be left-justified */
+            if (flagword & PADZERO)
+            {
+                if (!(flagword & LZERO))
+                {
+                    flagword |= LZERO;
+                    lzero = width - k;
+                }
+                else
+                    lzero += width - k;
 
-	      /* cancel padding blanks */
-	      k = width;
-	    }
-	  else
-	    {
-	      /* blanks on left if required */
-	      PAD(_blanks, width - k);
-	    }
-	}
+                /* cancel padding blanks */
+                k = width;
+            }
+            else
+            {
+                /* blanks on left if required */
+                PAD(_blanks, width - k);
+            }
+        }
 
-      /* prefix, if any */
-      if (prefixlength != 0)
-	{
-	  PUT(prefix, prefixlength);
-	}
+        /* prefix, if any */
+        if (prefixlength != 0)
+        {
+            PUT(prefix, prefixlength);
+        }
 
-      /* zeroes on the left */
-      if (flagword & LZERO)
-	{
-	  PAD(_zeroes, lzero);
-	}
+        /* zeroes on the left */
+        if (flagword & LZERO)
+        {
+            PAD(_zeroes, lzero);
+        }
 
-      /* the value itself */
-      if (n > 0)
-	{
-	  PUT(bp, n);
-	}
+        /* the value itself */
+        if (n > 0)
+        {
+            PUT(bp, n);
+        }
     }
 }
 
@@ -745,37 +752,37 @@ myvsprintf(char *obuf, char *format, va_list v)
 char *
 mysprintf(char *obuf, char *format, ...)
 {
-  /* vararg parameters */
-  va_list v;
-  va_start(v, format);
+    /* vararg parameters */
+    va_list v;
+    va_start(v, format);
 
-  return myvsprintf(obuf, format, v);
+    return myvsprintf(obuf, format, v);
 }
 
 /* portable vfprintf with qword support, returns end pointer */
 void
 myvfprintf(FILE *stream, char *format, va_list v)
 {
-  /* temp buffer */
-  char buf[2048];
+    /* temp buffer */
+    char buf[2048];
 
-  myvsprintf(buf, format, v);
-  fputs(buf, stream);
+    myvsprintf(buf, format, v);
+    fputs(buf, stream);
 }
 
 /* portable fprintf with qword support, returns end pointer */
 void
 myfprintf(FILE *stream, char *format, ...)
 {
-  /* temp buffer */
-  char buf[2048];
+    /* temp buffer */
+    char buf[2048];
 
-  /* vararg parameters */
-  va_list v;
-  va_start(v, format);
+    /* vararg parameters */
+    va_list v;
+    va_start(v, format);
 
-  myvsprintf(buf, format, v);
-  fputs(buf, stream);
+    myvsprintf(buf, format, v);
+    fputs(buf, stream);
 }
 
 #ifdef HOST_HAS_QWORD
@@ -788,270 +795,270 @@ myfprintf(FILE *stream, char *format, ...)
 sqword_t
 myatosq(char *nptr, char **endp, int base)
 {
-  char *s, *save;
-  int negative, overflow;
-  sqword_t cutoff, cutlim, i;
-  unsigned char c;
-  extern int errno;
+    char *s, *save;
+    int negative, overflow;
+    sqword_t cutoff, cutlim, i;
+    unsigned char c;
+    extern int errno;
 
-  if (!nptr || !*nptr)
-    panic("strtoll() passed a NULL string");
+    if (!nptr || !*nptr)
+        panic("strtoll() passed a NULL string");
 
-  s = nptr;
+    s = nptr;
 
-  /* skip white space */
-  while (isspace((int)(*s)))
-    ++s;
-  if (*s == '\0')
-    goto noconv;
+    /* skip white space */
+    while (isspace((int)(*s)))
+        ++s;
+    if (*s == '\0')
+        goto noconv;
 
-  if (base == 0)
+    if (base == 0)
     {
-      if (s[0] == '0' && toupper(s[1]) == 'X')
-	base = 16;
-      else
-	base = 10;
+        if (s[0] == '0' && toupper(s[1]) == 'X')
+            base = 16;
+        else
+            base = 10;
     }
 
-  if (base <= 1 || base > 36)
-    panic("bogus base: %d", base);
+    if (base <= 1 || base > 36)
+        panic("bogus base: %d", base);
 
-  /* check for a sign */
-  if (*s == '-')
+    /* check for a sign */
+    if (*s == '-')
     {
-      negative = 1;
-      ++s;
+        negative = 1;
+        ++s;
     }
-  else if (*s == '+')
+    else if (*s == '+')
     {
-      negative = 0;
-      ++s;
+        negative = 0;
+        ++s;
     }
-  else
-    negative = 0;
+    else
+        negative = 0;
 
-  if (base == 16 && s[0] == '0' && toupper(s[1]) == 'X')
-    s += 2;
+    if (base == 16 && s[0] == '0' && toupper(s[1]) == 'X')
+        s += 2;
 
-  /* save the pointer so we can check later if anything happened */
-  save = s;
+    /* save the pointer so we can check later if anything happened */
+    save = s;
 
-  cutoff = LL_MAX / (unsigned long int) base;
-  cutlim = LL_MAX % (unsigned long int) base;
+    cutoff = LL_MAX / (unsigned long int) base;
+    cutlim = LL_MAX % (unsigned long int) base;
 
-  overflow = 0;
-  i = 0;
-  for (c = *s; c != '\0'; c = *++s)
+    overflow = 0;
+    i = 0;
+    for (c = *s; c != '\0'; c = *++s)
     {
-      if (isdigit (c))
-        c -= '0';
-      else if (isalpha (c))
-        c = toupper(c) - 'A' + 10;
-      else
-        break;
-      if (c >= base)
-        break;
+        if (isdigit (c))
+            c -= '0';
+        else if (isalpha (c))
+            c = toupper(c) - 'A' + 10;
+        else
+            break;
+        if (c >= base)
+            break;
 
-      /* check for overflow */
-      if (i > cutoff || (i == cutoff && c > cutlim))
-        overflow = 1;
-      else
+        /* check for overflow */
+        if (i > cutoff || (i == cutoff && c > cutlim))
+            overflow = 1;
+        else
         {
-          i *= (unsigned long int) base;
-          i += c;
+            i *= (unsigned long int) base;
+            i += c;
         }
     }
 
-  /* check if anything actually happened */
-  if (s == save)
-    goto noconv;
+    /* check if anything actually happened */
+    if (s == save)
+        goto noconv;
 
-  /* store in ENDP the address of one character past the last character
-     we converted */
-  if (endp != NULL)
-    *endp = (char *) s;
+    /* store in ENDP the address of one character past the last character
+       we converted */
+    if (endp != NULL)
+        *endp = (char *) s;
 
-  if (overflow)
+    if (overflow)
     {
-      errno = ERANGE;
-      return negative ? LL_MIN : LL_MAX;
+        errno = ERANGE;
+        return negative ? LL_MIN : LL_MAX;
     }
-  else
+    else
     {
-      errno = 0;
+        errno = 0;
 
-      /* return the result of the appropriate sign */
-      return (negative ? -i : i);
+        /* return the result of the appropriate sign */
+        return (negative ? -i : i);
     }
 
 noconv:
-  /* there was no number to convert */
-  if (endp != NULL)
-    *endp = (char *) nptr;
-  return 0;
+    /* there was no number to convert */
+    if (endp != NULL)
+        *endp = (char *) nptr;
+    return 0;
 }
 
 /* convert a string to a unsigned result */
 qword_t
 myatoq(char *nptr, char **endp, int base)
 {
-  char *s, *save;
-  int overflow;
-  qword_t cutoff, cutlim, i;
-  unsigned char c;
-  extern int errno;
+    char *s, *save;
+    int overflow;
+    qword_t cutoff, cutlim, i;
+    unsigned char c;
+    extern int errno;
 
-  if (!nptr || !*nptr)
-    panic("strtoll() passed a NULL string");
+    if (!nptr || !*nptr)
+        panic("strtoll() passed a NULL string");
 
-  s = nptr;
+    s = nptr;
 
-  /* skip white space */
-  while (isspace((int)(*s)))
-    ++s;
-  if (*s == '\0')
-    goto noconv;
+    /* skip white space */
+    while (isspace((int)(*s)))
+        ++s;
+    if (*s == '\0')
+        goto noconv;
 
-  if (base == 0)
+    if (base == 0)
     {
-      if (s[0] == '0' && toupper(s[1]) == 'X')
-	base = 16;
-      else
-	base = 10;
+        if (s[0] == '0' && toupper(s[1]) == 'X')
+            base = 16;
+        else
+            base = 10;
     }
 
-  if (base <= 1 || base > 36)
-    panic("bogus base: %d", base);
+    if (base <= 1 || base > 36)
+        panic("bogus base: %d", base);
 
-  if (base == 16 && s[0] == '0' && toupper(s[1]) == 'X')
-    s += 2;
+    if (base == 16 && s[0] == '0' && toupper(s[1]) == 'X')
+        s += 2;
 
-  /* save the pointer so we can check later if anything happened */
-  save = s;
+    /* save the pointer so we can check later if anything happened */
+    save = s;
 
-  cutoff = ULL_MAX / (unsigned long int) base;
-  cutlim = ULL_MAX % (unsigned long int) base;
+    cutoff = ULL_MAX / (unsigned long int) base;
+    cutlim = ULL_MAX % (unsigned long int) base;
 
-  overflow = 0;
-  i = 0;
-  for (c = *s; c != '\0'; c = *++s)
+    overflow = 0;
+    i = 0;
+    for (c = *s; c != '\0'; c = *++s)
     {
-      if (isdigit (c))
-        c -= '0';
-      else if (isalpha (c))
-        c = toupper(c) - 'A' + 10;
-      else
-        break;
-      if (c >= base)
-        break;
+        if (isdigit (c))
+            c -= '0';
+        else if (isalpha (c))
+            c = toupper(c) - 'A' + 10;
+        else
+            break;
+        if (c >= base)
+            break;
 
-      /* check for overflow */
-      if (i > cutoff || (i == cutoff && c > cutlim))
-        overflow = 1;
-      else
+        /* check for overflow */
+        if (i > cutoff || (i == cutoff && c > cutlim))
+            overflow = 1;
+        else
         {
-          i *= (unsigned long int) base;
-          i += c;
+            i *= (unsigned long int) base;
+            i += c;
         }
     }
 
-  /* check if anything actually happened */
-  if (s == save)
-    goto noconv;
+    /* check if anything actually happened */
+    if (s == save)
+        goto noconv;
 
-  /* store in ENDP the address of one character past the last character
-     we converted */
-  if (endp != NULL)
-    *endp = (char *) s;
+    /* store in ENDP the address of one character past the last character
+       we converted */
+    if (endp != NULL)
+        *endp = (char *) s;
 
-  if (overflow)
+    if (overflow)
     {
-      errno = ERANGE;
-      return ULL_MAX;
+        errno = ERANGE;
+        return ULL_MAX;
     }
-  else
+    else
     {
-      errno = 0;
+        errno = 0;
 
-      /* return the result of the appropriate sign */
-      return i;
+        /* return the result of the appropriate sign */
+        return i;
     }
 
 noconv:
-  /* there was no number to convert */
-  if (endp != NULL)
-    *endp = (char *) nptr;
-  return 0;
+    /* there was no number to convert */
+    if (endp != NULL)
+        *endp = (char *) nptr;
+    return 0;
 }
 
 #ifdef TESTIT
 void
 testit(char *s)
 {
-  char buf[128];
-  qword_t qval;
+    char buf[128];
+    qword_t qval;
 
-  qval = myatoq(s, NULL, 10);
+    qval = myatoq(s, NULL, 10);
 
-  myqtoa(qval, "%x", buf, NULL);
-  fprintf(stderr, "x:    %s\n", buf);
-  myqtoa(qval, "%16x", buf, NULL);
-  fprintf(stderr, "16x:  %s\n", buf);
-  myqtoa(qval, "%016x", buf, NULL);
-  fprintf(stderr, "016x: %s\n", buf);
-  myqtoa(qval, "0x%016x", buf, NULL);
-  fprintf(stderr, "0x016x: %s\n", buf);
-  myqtoa(qval, "0x%08x", buf, NULL);
-  fprintf(stderr, "0x08x: %s\n", buf);
+    myqtoa(qval, "%x", buf, NULL);
+    fprintf(stderr, "x:    %s\n", buf);
+    myqtoa(qval, "%16x", buf, NULL);
+    fprintf(stderr, "16x:  %s\n", buf);
+    myqtoa(qval, "%016x", buf, NULL);
+    fprintf(stderr, "016x: %s\n", buf);
+    myqtoa(qval, "0x%016x", buf, NULL);
+    fprintf(stderr, "0x016x: %s\n", buf);
+    myqtoa(qval, "0x%08x", buf, NULL);
+    fprintf(stderr, "0x08x: %s\n", buf);
 
-  myqtoa(qval, "%d", buf, NULL);
-  fprintf(stderr, "d:    %s\n", buf);
-  myqtoa(qval, "%22d", buf, NULL);
-  fprintf(stderr, "22d:  %s\n", buf);
-  myqtoa(qval, "%022d", buf, NULL);
-  fprintf(stderr, "022d: %s\n", buf);
+    myqtoa(qval, "%d", buf, NULL);
+    fprintf(stderr, "d:    %s\n", buf);
+    myqtoa(qval, "%22d", buf, NULL);
+    fprintf(stderr, "22d:  %s\n", buf);
+    myqtoa(qval, "%022d", buf, NULL);
+    fprintf(stderr, "022d: %s\n", buf);
 
-  myqtoa(qval, "%u", buf, NULL);
-  fprintf(stderr, "u:    %s\n", buf);
+    myqtoa(qval, "%u", buf, NULL);
+    fprintf(stderr, "u:    %s\n", buf);
 
-  myqtoa(qval, "%o", buf, NULL);
-  fprintf(stderr, "o:    %s\n", buf);
+    myqtoa(qval, "%o", buf, NULL);
+    fprintf(stderr, "o:    %s\n", buf);
 }
 
 void
 stestit(char *s)
 {
-  char buf[128];
-  sqword_t sqval;
+    char buf[128];
+    sqword_t sqval;
 
-  sqval = myatosq(s, NULL, 10);
+    sqval = myatosq(s, NULL, 10);
 
-  myqtoa(sqval, "%x", buf, NULL);
-  fprintf(stderr, "x: %s\n", buf);
+    myqtoa(sqval, "%x", buf, NULL);
+    fprintf(stderr, "x: %s\n", buf);
 
-  myqtoa(sqval, "%d", buf, NULL);
-  fprintf(stderr, "d: %s\n", buf);
+    myqtoa(sqval, "%d", buf, NULL);
+    fprintf(stderr, "d: %s\n", buf);
 
-  myqtoa(sqval, "%u", buf, NULL);
-  fprintf(stderr, "u: %s\n", buf);
+    myqtoa(sqval, "%u", buf, NULL);
+    fprintf(stderr, "u: %s\n", buf);
 }
 
 void
 xtestit(char *s)
 {
-  char buf[128];
-  qword_t qval;
+    char buf[128];
+    qword_t qval;
 
-  qval = myatoq(s, NULL, 16);
+    qval = myatoq(s, NULL, 16);
 
-  myqtoa(qval, "%x", buf, NULL);
-  fprintf(stderr, "x: %s\n", buf);
+    myqtoa(qval, "%x", buf, NULL);
+    fprintf(stderr, "x: %s\n", buf);
 
-  myqtoa(qval, "%d", buf, NULL);
-  fprintf(stderr, "d: %s\n", buf);
+    myqtoa(qval, "%d", buf, NULL);
+    fprintf(stderr, "d: %s\n", buf);
 
-  myqtoa(qval, "%u", buf, NULL);
-  fprintf(stderr, "u: %s\n", buf);
+    myqtoa(qval, "%u", buf, NULL);
+    fprintf(stderr, "u: %s\n", buf);
 }
 #endif /* TESTIT */
 
@@ -1059,18 +1066,20 @@ xtestit(char *s)
 
 #ifdef GZIP_PATH
 
-static struct {
-  char *type;
-  char *ext;
-  char *cmd;
-} gzcmds[] = {
-  /* type */	/* extension */		/* command */
-  { "r",	".gz",			"%s -dc %s" },
-  { "rb",	".gz",			"%s -dc %s" },
-  { "r",	".Z",			"%s -dc %s" },
-  { "rb",	".Z",			"%s -dc %s" },
-  { "w",	".gz",			"%s > %s" },
-  { "wb",	".gz",			"%s > %s" }
+static struct
+{
+    char *type;
+    char *ext;
+    char *cmd;
+} gzcmds[] =
+{
+    /* type */	/* extension */		/* command */
+    { "r",	".gz",			"%s -dc %s" },
+    { "rb",	".gz",			"%s -dc %s" },
+    { "r",	".Z",			"%s -dc %s" },
+    { "rb",	".Z",			"%s -dc %s" },
+    { "w",	".gz",			"%s > %s" },
+    { "wb",	".gz",			"%s > %s" }
 };
 
 /* same semantics as fopen() except that filenames ending with a ".gz" or ".Z"
@@ -1078,49 +1087,49 @@ static struct {
 FILE *
 gzopen(char *fname, char *type)
 {
-  int i;
-  char *cmd = NULL, *ext;
-  FILE *fd;
-  char str[2048];
+    int i;
+    char *cmd = NULL, *ext;
+    FILE *fd;
+    char str[2048];
 
-  /* get the extension */
-  ext = mystrrchr(fname, '.');
+    /* get the extension */
+    ext = mystrrchr(fname, '.');
 
-  /* check if extension indicates compressed file */
-  if (ext != NULL && *ext != '\0')
+    /* check if extension indicates compressed file */
+    if (ext != NULL && *ext != '\0')
     {
-      for (i=0; i < N_ELT(gzcmds); i++)
-	{
-	  if (!strcmp(gzcmds[i].type, type) && !strcmp(gzcmds[i].ext, ext))
-	    {
-	      cmd = gzcmds[i].cmd;
-	      break;
-	    }
-	}
+        for (i=0; i < N_ELT(gzcmds); i++)
+        {
+            if (!strcmp(gzcmds[i].type, type) && !strcmp(gzcmds[i].ext, ext))
+            {
+                cmd = gzcmds[i].cmd;
+                break;
+            }
+        }
     }
 
-  if (!cmd)
+    if (!cmd)
     {
-      /* open file */
-      fd = fopen(fname, type);
+        /* open file */
+        fd = fopen(fname, type);
     }
-  else
+    else
     {
-      /* open pipe to compressor/decompressor */
-      sprintf(str, cmd, GZIP_PATH, fname);
-      fd = popen(str, type);
+        /* open pipe to compressor/decompressor */
+        sprintf(str, cmd, GZIP_PATH, fname);
+        fd = popen(str, type);
     }
 
-  return fd;
+    return fd;
 }
 
 /* close compressed stream */
 void
 gzclose(FILE *fd)
 {
-  /* attempt pipe close, otherwise file close */
-  if (pclose(fd) == -1)
-    fclose(fd);
+    /* attempt pipe close, otherwise file close */
+    if (pclose(fd) == -1)
+        fclose(fd);
 }
 
 #else /* !GZIP_PATH */
@@ -1128,13 +1137,13 @@ gzclose(FILE *fd)
 FILE *
 gzopen(char *fname, char *type)
 {
-  return fopen(fname, type);
+    return fopen(fname, type);
 }
 
 void
 gzclose(FILE *fd)
 {
-  fclose(fd);
+    fclose(fd);
 }
 
 #endif /* GZIP_PATH */
@@ -1150,40 +1159,40 @@ static unsigned long crc_table[256];
 static void
 crc_gentab(void)
 {
-  int i, j;
-  word_t crc_accum;
+    int i, j;
+    word_t crc_accum;
 
-  for (i=0; i < 256; i++)
+    for (i=0; i < 256; i++)
     {
-      crc_accum = ((unsigned long)i << 24);
-      for (j=0; j < 8; j++)
-	{
-	  if (crc_accum & 0x80000000L)
-	    crc_accum = (crc_accum << 1) ^ POLYNOMIAL;
-	  else
-	    crc_accum = (crc_accum << 1);
-	}
-      crc_table[i] = crc_accum;
+        crc_accum = ((unsigned long)i << 24);
+        for (j=0; j < 8; j++)
+        {
+            if (crc_accum & 0x80000000L)
+                crc_accum = (crc_accum << 1) ^ POLYNOMIAL;
+            else
+                crc_accum = (crc_accum << 1);
+        }
+        crc_table[i] = crc_accum;
     }
-  return;
+    return;
 }
 
 /* update the CRC on the data block one byte at a time */
 word_t
 crc(word_t crc_accum, word_t data)
 {
-  int i, j;
+    int i, j;
 
-  if (!crc_init)
+    if (!crc_init)
     {
-      crc_gentab();
-      crc_init = TRUE;
+        crc_gentab();
+        crc_init = TRUE;
     }
 
-  for (j=0; j < sizeof(word_t); j++)
+    for (j=0; j < sizeof(word_t); j++)
     {
-      i = ((int)(crc_accum >> 24) ^ (data >> (j*8))) & 0xff;
-      crc_accum = (crc_accum << 8) ^ crc_table[i];
+        i = ((int)(crc_accum >> 24) ^ (data >> (j*8))) & 0xff;
+        crc_accum = (crc_accum << 8) ^ crc_table[i];
     }
-  return crc_accum;
+    return crc_accum;
 }

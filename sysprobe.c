@@ -2,20 +2,20 @@
 
 /* SimpleScalar(TM) Tool Suite
  * Copyright (C) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
- * All Rights Reserved. 
- * 
+ * All Rights Reserved.
+ *
  * THIS IS A LEGAL DOCUMENT, BY USING SIMPLESCALAR,
  * YOU ARE AGREEING TO THESE TERMS AND CONDITIONS.
- * 
+ *
  * No portion of this work may be used by any commercial entity, or for any
  * commercial purpose, without the prior, written permission of SimpleScalar,
  * LLC (info@simplescalar.com). Nonprofit and noncommercial use is permitted
  * as described below.
- * 
+ *
  * 1. SimpleScalar is provided AS IS, with no warranty of any kind, express
  * or implied. The user of the program accepts full responsibility for the
  * application of the program and the use of any results.
- * 
+ *
  * 2. Nonprofit and noncommercial use is encouraged. SimpleScalar may be
  * downloaded, compiled, executed, copied, and modified solely for nonprofit,
  * educational, noncommercial research, and noncommercial scholarship
@@ -24,13 +24,13 @@
  * solely for nonprofit, educational, noncommercial research, and
  * noncommercial scholarship purposes provided that this notice in its
  * entirety accompanies all copies.
- * 
+ *
  * 3. ALL COMMERCIAL USE, AND ALL USE BY FOR PROFIT ENTITIES, IS EXPRESSLY
  * PROHIBITED WITHOUT A LICENSE FROM SIMPLESCALAR, LLC (info@simplescalar.com).
- * 
+ *
  * 4. No nonprofit user may place any restrictions on the use of this software,
  * including as modified by the user, by any other authorized user.
- * 
+ *
  * 5. Noncommercial and nonprofit users may distribute copies of SimpleScalar
  * in compiled or executable form as set forth in Section 2, provided that
  * either: (A) it is accompanied by the corresponding machine-readable source
@@ -40,11 +40,11 @@
  * must permit verbatim duplication by anyone, or (C) it is distributed by
  * someone who received only the executable form, and is accompanied by a
  * copy of the written offer of source code.
- * 
+ *
  * 6. SimpleScalar was developed by Todd M. Austin, Ph.D. The tool suite is
  * currently maintained by SimpleScalar LLC (info@simplescalar.com). US Mail:
  * 2395 Timbercrest Court, Ann Arbor, MI 48105.
- * 
+ *
  * Copyright (C) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
  */
 
@@ -63,13 +63,13 @@
 
 char *gzip_paths[] =
 {
-  "/bin/gzip",
-  "/usr/bin/gzip",
-  "/usr/local/bin/gzip",
-  "/usr/intel/bin/gzip",
-  "/usr/gnu/bin/gzip",
-  "/usr/local/gnu/bin",
-  NULL
+    "/bin/gzip",
+    "/usr/bin/gzip",
+    "/usr/local/bin/gzip",
+    "/usr/intel/bin/gzip",
+    "/usr/gnu/bin/gzip",
+    "/usr/local/gnu/bin",
+    NULL
 };
 
 #define HOST_ONLY
@@ -81,198 +81,198 @@ char *gzip_paths[] =
 int
 fast_SRL(void)
 {
-  word_t ui;
+    word_t ui;
 
-  if (sizeof(ui) != 4)
+    if (sizeof(ui) != 4)
     {
-      /* fundamental size assumption broken - emulate SRL */
-      return FALSE;
+        /* fundamental size assumption broken - emulate SRL */
+        return FALSE;
     }
 
-  ui = (word_t)MSB;
-  if (((ui >> 1) & MSB) != 0)
+    ui = (word_t)MSB;
+    if (((ui >> 1) & MSB) != 0)
     {
-      /* unsigned int does SRA - emulate SRL */
-      return FALSE;
+        /* unsigned int does SRA - emulate SRL */
+        return FALSE;
     }
-  else
+    else
     {
-      /* unsigned int does SRL - use fast native SRL */
-      return TRUE;
+        /* unsigned int does SRL - use fast native SRL */
+        return TRUE;
     }
 }
 
 int
 fast_SRA(void)
 {
-  sword_t si;
+    sword_t si;
 
-  if (sizeof(si) != 4)
+    if (sizeof(si) != 4)
     {
-      /* fundamental size assumption broken - emulate SRA */
-      return FALSE;
+        /* fundamental size assumption broken - emulate SRA */
+        return FALSE;
     }
 
-  si = (sword_t)MSB;
-  if ((si >> 1) & MSB)
+    si = (sword_t)MSB;
+    if ((si >> 1) & MSB)
     {
-      /* signed int does SRA - use fast native SRA */
-      return TRUE;
+        /* signed int does SRA - use fast native SRA */
+        return TRUE;
     }
-  else
+    else
     {
-      /* singned int does SRL - emulate SRA */
-      return FALSE;
+        /* singned int does SRL - emulate SRA */
+        return FALSE;
     }
 }
 
 int
 main(int argc, char **argv)
 {
-  int little_bytes = 0, little_words = 0;
+    int little_bytes = 0, little_words = 0;
 
-  if (argc == 2 && !strcmp(argv[1], "-s"))
+    if (argc == 2 && !strcmp(argv[1], "-s"))
     {
-      switch (endian_host_byte_order())
-	{
-	case endian_big:
-	  fprintf(stdout, "big\n");
-	  break;
-	case endian_little:
-	  fprintf(stdout, "little\n");
-	  break;
-	case endian_unknown:
-	  fprintf(stderr, "\nerror: cannot determine byte order!\n");
-	  exit(1);
-	default:
-	  abort();
-	}
+        switch (endian_host_byte_order())
+        {
+        case endian_big:
+            fprintf(stdout, "big\n");
+            break;
+        case endian_little:
+            fprintf(stdout, "little\n");
+            break;
+        case endian_unknown:
+            fprintf(stderr, "\nerror: cannot determine byte order!\n");
+            exit(1);
+        default:
+            abort();
+        }
     }
-  else if (argc == 2 && !strcmp(argv[1], "-libs"))
+    else if (argc == 2 && !strcmp(argv[1], "-libs"))
     {
 #ifdef BFD_LOADER
-      fprintf(stdout, "-lbfd -liberty ");
+        fprintf(stdout, "-lbfd -liberty ");
 #endif /* BFD_LOADER */
 
 #ifdef linux
-      /* nada... */
+        /* nada... */
 #elif defined(__USLC__) || (defined(__svr4__) && defined(__i386__) && defined(__unix__))
-      fprintf(stdout, "-L/usr/ucblib -lucb ");
+        fprintf(stdout, "-L/usr/ucblib -lucb ");
 #else
-      /* nada */
+        /* nada */
 #endif
-      fprintf(stdout, " \n");
+        fprintf(stdout, " \n");
     }
-  else if (argc == 1 || (argc == 2 && !strcmp(argv[1], "-flags")))
+    else if (argc == 1 || (argc == 2 && !strcmp(argv[1], "-flags")))
     {
-      switch (endian_host_byte_order())
-	{
-	case endian_big:
-	  fprintf(stdout, "-DBYTES_BIG_ENDIAN ");
-	  break;
-	case endian_little:
-	  fprintf(stdout, "-DBYTES_LITTLE_ENDIAN ");
-	  little_bytes = 1;
-	  break;
-	case endian_unknown:
-	  fprintf(stderr, "\nerror: cannot determine byte order!\n");
-	  exit(1);
-	default:
-	  abort();
-	}
+        switch (endian_host_byte_order())
+        {
+        case endian_big:
+            fprintf(stdout, "-DBYTES_BIG_ENDIAN ");
+            break;
+        case endian_little:
+            fprintf(stdout, "-DBYTES_LITTLE_ENDIAN ");
+            little_bytes = 1;
+            break;
+        case endian_unknown:
+            fprintf(stderr, "\nerror: cannot determine byte order!\n");
+            exit(1);
+        default:
+            abort();
+        }
 
-      switch (endian_host_word_order())
-	{
-	case endian_big:
-	  fprintf(stdout, "-DWORDS_BIG_ENDIAN ");
-	  break;
-	case endian_little:
-	  fprintf(stdout, "-DWORDS_LITTLE_ENDIAN ");
-	  little_words = 1;
-	  break;
-	case endian_unknown:
-	  fprintf(stderr, "\nerror: cannot determine word order!\n");
-	  exit(1);
-	default:
-	  abort();
-	}
+        switch (endian_host_word_order())
+        {
+        case endian_big:
+            fprintf(stdout, "-DWORDS_BIG_ENDIAN ");
+            break;
+        case endian_little:
+            fprintf(stdout, "-DWORDS_LITTLE_ENDIAN ");
+            little_words = 1;
+            break;
+        case endian_unknown:
+            fprintf(stderr, "\nerror: cannot determine word order!\n");
+            exit(1);
+        default:
+            abort();
+        }
 
 #ifdef _AIX
-	fprintf(stdout, "-D_ALL_SOURCE ");
+        fprintf(stdout, "-D_ALL_SOURCE ");
 #endif /* _AIX */
 
 #if (defined(hpux) || defined(__hpux)) && !defined(__GNUC__)
-	fprintf(stdout, "-D_INCLUDE_HPUX_SOURCE -D_INCLUDE_XOPEN_SOURCE -D_INCLUDE_AES_SOURCE ");
+        fprintf(stdout, "-D_INCLUDE_HPUX_SOURCE -D_INCLUDE_XOPEN_SOURCE -D_INCLUDE_AES_SOURCE ");
 #endif /* hpux */
 
 #ifndef __GNUC__
-      /* probe compiler approach needed to concatenate symbols in CPP,
-	 new style concatenation is always used with GNU GCC */
-      {
-	int i = 5, j;
+        /* probe compiler approach needed to concatenate symbols in CPP,
+        new style concatenation is always used with GNU GCC */
+        {
+            int i = 5, j;
 
-	j = CAT(-,-i);
+            j = CAT(-,-i);
 
-	if (j == 4)
-	  {
-	    /* old style symbol concatenation worked */
-	    fprintf(stdout, "-DOLD_SYMCAT ");
-	  }
-	else if (j == 5)
-	  {
-	    /* old style symbol concatenation does not work, assume that
-	       new style symbol concatenation works */
-	    ;
-	  }
-	else
-	  {
-	    /* huh!?!?! */
-	    fprintf(stderr, "\nerror: cannot grok symbol concat method!\n");
-	    exit(1);
-	  }
-      }
+            if (j == 4)
+            {
+                /* old style symbol concatenation worked */
+                fprintf(stdout, "-DOLD_SYMCAT ");
+            }
+            else if (j == 5)
+            {
+                /* old style symbol concatenation does not work, assume that
+                   new style symbol concatenation works */
+                ;
+            }
+            else
+            {
+                /* huh!?!?! */
+                fprintf(stderr, "\nerror: cannot grok symbol concat method!\n");
+                exit(1);
+            }
+        }
 #endif /* __GNUC__ */
 
 #ifndef SLOW_SHIFTS
-      /* probe host shift capabilities */
-      if (fast_SRL())
-	fprintf(stdout, "-DFAST_SRL ");
-      if (fast_SRA())
-	fprintf(stdout, "-DFAST_SRA ");
+        /* probe host shift capabilities */
+        if (fast_SRL())
+            fprintf(stdout, "-DFAST_SRL ");
+        if (fast_SRA())
+            fprintf(stdout, "-DFAST_SRA ");
 #endif /* !SLOW_SHIFTS */
 
-      /* locate GZIP */
+        /* locate GZIP */
 #ifndef GZIP_PATH
-      {
-	int i;
+        {
+            int i;
 
-	for (i=0; gzip_paths[i] != NULL; i++)
-	  {
-	    if (access(gzip_paths[i], X_OK) == 0)
-	      {
-		fprintf(stdout, "-DGZIP_PATH=\"%s\" ", gzip_paths[i]);
-		break;
-	      }
-	  }
-      }
+            for (i=0; gzip_paths[i] != NULL; i++)
+            {
+                if (access(gzip_paths[i], X_OK) == 0)
+                {
+                    fprintf(stdout, "-DGZIP_PATH=\"%s\" ", gzip_paths[i]);
+                    break;
+                }
+            }
+        }
 #endif /* !GZIP_PATH */
 
     }
-  else if (argc == 2 && !strcmp(argv[1], "-t"))
+    else if (argc == 2 && !strcmp(argv[1], "-t"))
     {
-      fprintf(stdout, "sizeof(int) = %d\n", sizeof(int));
-      fprintf(stdout, "sizeof(long) = %d\n", sizeof(long));
+        fprintf(stdout, "sizeof(int) = %d\n", sizeof(int));
+        fprintf(stdout, "sizeof(long) = %d\n", sizeof(long));
     }
 
 
-  /* check for different byte/word endian-ness */
-  if (little_bytes != little_words)
+    /* check for different byte/word endian-ness */
+    if (little_bytes != little_words)
     {
-      fprintf(stderr,
-	      "\nerror: opposite byte/word endian currently not supported!\n");
-      exit(1);
+        fprintf(stderr,
+                "\nerror: opposite byte/word endian currently not supported!\n");
+        exit(1);
     }
-  exit(0);
-  return 0;
+    exit(0);
+    return 0;
 }
 

@@ -2,20 +2,20 @@
 
 /* SimpleScalar(TM) Tool Suite
  * Copyright (C) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
- * All Rights Reserved. 
- * 
+ * All Rights Reserved.
+ *
  * THIS IS A LEGAL DOCUMENT, BY USING SIMPLESCALAR,
  * YOU ARE AGREEING TO THESE TERMS AND CONDITIONS.
- * 
+ *
  * No portion of this work may be used by any commercial entity, or for any
  * commercial purpose, without the prior, written permission of SimpleScalar,
  * LLC (info@simplescalar.com). Nonprofit and noncommercial use is permitted
  * as described below.
- * 
+ *
  * 1. SimpleScalar is provided AS IS, with no warranty of any kind, express
  * or implied. The user of the program accepts full responsibility for the
  * application of the program and the use of any results.
- * 
+ *
  * 2. Nonprofit and noncommercial use is encouraged. SimpleScalar may be
  * downloaded, compiled, executed, copied, and modified solely for nonprofit,
  * educational, noncommercial research, and noncommercial scholarship
@@ -24,13 +24,13 @@
  * solely for nonprofit, educational, noncommercial research, and
  * noncommercial scholarship purposes provided that this notice in its
  * entirety accompanies all copies.
- * 
+ *
  * 3. ALL COMMERCIAL USE, AND ALL USE BY FOR PROFIT ENTITIES, IS EXPRESSLY
  * PROHIBITED WITHOUT A LICENSE FROM SIMPLESCALAR, LLC (info@simplescalar.com).
- * 
+ *
  * 4. No nonprofit user may place any restrictions on the use of this software,
  * including as modified by the user, by any other authorized user.
- * 
+ *
  * 5. Noncommercial and nonprofit users may distribute copies of SimpleScalar
  * in compiled or executable form as set forth in Section 2, provided that
  * either: (A) it is accompanied by the corresponding machine-readable source
@@ -40,11 +40,11 @@
  * must permit verbatim duplication by anyone, or (C) it is distributed by
  * someone who received only the executable form, and is accompanied by a
  * copy of the written offer of source code.
- * 
+ *
  * 6. SimpleScalar was developed by Todd M. Austin, Ph.D. The tool suite is
  * currently maintained by SimpleScalar LLC (info@simplescalar.com). US Mail:
  * 2395 Timbercrest Court, Ann Arbor, MI 48105.
- * 
+ *
  * Copyright (C) 1994-2003 by Todd M. Austin, Ph.D. and SimpleScalar, LLC.
  */
 
@@ -100,17 +100,18 @@ typedef qword_t md_addr_t;
  * target-dependent instruction faults
  */
 
-enum md_fault_type {
-  md_fault_none = 0,		/* no fault */
-  md_fault_access,		/* storage access fault */
-  md_fault_alignment,		/* storage alignment fault */
-  md_fault_overflow,		/* signed arithmetic overflow fault */
-  md_fault_div0,		/* division by zero fault */
-  md_fault_invalid,             /* invalid arithmetic operation */ 
-                                /* added to allow SQRT{S,T} in FIX exts */
-  md_fault_break,		/* BREAK instruction fault */
-  md_fault_unimpl,		/* unimplemented instruction fault */
-  md_fault_internal		/* internal S/W fault */
+enum md_fault_type
+{
+    md_fault_none = 0,		/* no fault */
+    md_fault_access,		/* storage access fault */
+    md_fault_alignment,		/* storage alignment fault */
+    md_fault_overflow,		/* signed arithmetic overflow fault */
+    md_fault_div0,		/* division by zero fault */
+    md_fault_invalid,             /* invalid arithmetic operation */
+    /* added to allow SQRT{S,T} in FIX exts */
+    md_fault_break,		/* BREAK instruction fault */
+    md_fault_unimpl,		/* unimplemented instruction fault */
+    md_fault_internal		/* internal S/W fault */
 };
 
 
@@ -135,32 +136,35 @@ enum md_fault_type {
 typedef qword_t md_gpr_t[MD_NUM_IREGS];
 
 /* floating point register file entry type */
-typedef union {
-  qword_t q[MD_NUM_FREGS];	/* integer qword view */
-  dfloat_t d[MD_NUM_FREGS];	/* double-precision floating point view */
+typedef union
+{
+    qword_t q[MD_NUM_FREGS];	/* integer qword view */
+    dfloat_t d[MD_NUM_FREGS];	/* double-precision floating point view */
 } md_fpr_t;
 
 /* control register file contents */
-typedef struct {
-  qword_t fpcr;			/* floating point condition codes */
-  qword_t uniq;			/* process-unique register */
+typedef struct
+{
+    qword_t fpcr;			/* floating point condition codes */
+    qword_t uniq;			/* process-unique register */
 } md_ctrl_t;
 
 /* well known registers */
-enum md_reg_names {
-  MD_REG_V0 = 0,	/* return value reg */
-  MD_REG_ERR = 7,
-  MD_REG_FP = 15,	/* frame pointer */
-  MD_REG_A0 = 16,	/* argument regs */
-  MD_REG_A1 = 17,
-  MD_REG_A2 = 18,
-  MD_REG_A3 = 19,
-  MD_REG_A4 = 20,
-  MD_REG_A5 = 21,
-  MD_REG_RA = 26,	/* return address reg */
-  MD_REG_GP = 29,	/* global data section pointer */
-  MD_REG_SP = 30,	/* stack pointer */
-  MD_REG_ZERO = 31	/* zero register */
+enum md_reg_names
+{
+    MD_REG_V0 = 0,	/* return value reg */
+    MD_REG_ERR = 7,
+    MD_REG_FP = 15,	/* frame pointer */
+    MD_REG_A0 = 16,	/* argument regs */
+    MD_REG_A1 = 17,
+    MD_REG_A2 = 18,
+    MD_REG_A3 = 19,
+    MD_REG_A4 = 20,
+    MD_REG_A5 = 21,
+    MD_REG_RA = 26,	/* return address reg */
+    MD_REG_GP = 29,	/* global data section pointer */
+    MD_REG_SP = 30,	/* stack pointer */
+    MD_REG_ZERO = 31	/* zero register */
 };
 
 
@@ -221,13 +225,14 @@ extern md_inst_t MD_NOP_INST;
 #define MD_MAX_MASK		2048
 
 /* global opcode names, these are returned by the decoder (MD_OP_ENUM()) */
-enum md_opcode {
-  OP_NA = 0,	/* NA */
+enum md_opcode
+{
+    OP_NA = 0,	/* NA */
 #define DEFINST(OP,MSK,NAME,OPFORM,RES,FLAGS,O1,O2,I1,I2,I3) OP,
 #define DEFLINK(OP,MSK,NAME,MASK,SHIFT) OP,
 #define CONNECT(OP)
 #include "machine.def"
-  OP_MAX	/* number of opcodes + NA */
+    OP_MAX	/* number of opcodes + NA */
 };
 
 /* internal decoder state */
@@ -245,20 +250,21 @@ extern char *md_op2name[];
 extern char *md_op2format[];
 
 /* function unit classes, update md_fu2name if you update this definition */
-enum md_fu_class {
-  FUClamd_NA = 0,	/* inst does not use a functional unit */
-  IntALU,		/* integer ALU */
-  IntMULT,		/* integer multiplier */
-  IntDIV,		/* integer divider */
-  FloatADD,		/* floating point adder/subtractor */
-  FloatCMP,		/* floating point comparator */
-  FloatCVT,		/* floating point<->integer converter */
-  FloatMULT,		/* floating point multiplier */
-  FloatDIV,		/* floating point divider */
-  FloatSQRT,		/* floating point square root */
-  RdPort,		/* memory read port */
-  WrPort,		/* memory write port */
-  NUM_FU_CLASSES	/* total functional unit classes */
+enum md_fu_class
+{
+    FUClamd_NA = 0,	/* inst does not use a functional unit */
+    IntALU,		/* integer ALU */
+    IntMULT,		/* integer multiplier */
+    IntDIV,		/* integer divider */
+    FloatADD,		/* floating point adder/subtractor */
+    FloatCMP,		/* floating point comparator */
+    FloatCVT,		/* floating point<->integer converter */
+    FloatMULT,		/* floating point multiplier */
+    FloatDIV,		/* floating point divider */
+    FloatSQRT,		/* floating point square root */
+    RdPort,		/* memory read port */
+    WrPort,		/* memory write port */
+    NUM_FU_CLASSES	/* total functional unit classes */
 };
 
 /* enum md_opcode -> enum md_fu_class, used by performance simulators */
@@ -364,14 +370,15 @@ extern unsigned int md_op2flags[];
   ((OP) == JMP || (OP) == JSR || (OP) == RETN || (OP) == JSR_COROUTINE)
 
 /* addressing mode probe, enums and strings */
-enum md_amode_type {
-  md_amode_imm,		/* immediate addressing mode */
-  md_amode_gp,		/* global data access through global pointer */
-  md_amode_sp,		/* stack access through stack pointer */
-  md_amode_fp,		/* stack access through frame pointer */
-  md_amode_disp,	/* (reg + const) addressing */
-  md_amode_rr,		/* (reg + reg) addressing */
-  md_amode_NUM
+enum md_amode_type
+{
+    md_amode_imm,		/* immediate addressing mode */
+    md_amode_gp,		/* global data access through global pointer */
+    md_amode_sp,		/* stack access through stack pointer */
+    md_amode_fp,		/* stack access through frame pointer */
+    md_amode_disp,	/* (reg + const) addressing */
+    md_amode_rr,		/* (reg + reg) addressing */
+    md_amode_NUM
 };
 extern char *md_amode_str[md_amode_NUM];
 
@@ -497,22 +504,24 @@ typedef double exo_float_t;
  */
 
 /* register bank specifier */
-enum md_reg_type {
-  rt_gpr,		/* general purpose register */
-  rt_lpr,		/* integer-precision floating pointer register */
-  rt_fpr,		/* single-precision floating pointer register */
-  rt_dpr,		/* double-precision floating pointer register */
-  rt_ctrl,		/* control register */
-  rt_PC,		/* program counter */
-  rt_NPC,		/* next program counter */
-  rt_NUM
+enum md_reg_type
+{
+    rt_gpr,		/* general purpose register */
+    rt_lpr,		/* integer-precision floating pointer register */
+    rt_fpr,		/* single-precision floating pointer register */
+    rt_dpr,		/* double-precision floating pointer register */
+    rt_ctrl,		/* control register */
+    rt_PC,		/* program counter */
+    rt_NPC,		/* next program counter */
+    rt_NUM
 };
 
 /* register name specifier */
-struct md_reg_names_t {
-  char *str;			/* register name */
-  enum md_reg_type file;	/* register file */
-  int reg;			/* register index */
+struct md_reg_names_t
+{
+    char *str;			/* register name */
+    enum md_reg_type file;	/* register file */
+    int reg;			/* register index */
 };
 
 /* symbolic register names, parser is case-insensitive */
@@ -526,10 +535,10 @@ struct eval_value_t;
 struct regs_t;
 char *						/* err str, NULL for no err */
 md_reg_obj(struct regs_t *regs,			/* registers to access */
-	   int is_write,			/* access type */
-	   enum md_reg_type rt,			/* reg bank to probe */
-	   int reg,				/* register number */
-	   struct eval_value_t *val);		/* input, output */
+           int is_write,			/* access type */
+           enum md_reg_type rt,			/* reg bank to probe */
+           int reg,				/* register number */
+           struct eval_value_t *val);		/* input, output */
 
 /* print integer REG(S) to STREAM */
 void md_print_ireg(md_gpr_t regs, int reg, FILE *stream);
@@ -583,8 +592,8 @@ void md_init_decoder(void);
 /* disassemble a SimpleScalar instruction */
 void
 md_print_insn(md_inst_t inst,		/* instruction to disassemble */
-	      md_addr_t pc,		/* addr of inst, used for PC-rels */
-	      FILE *stream);		/* output stream */
+              md_addr_t pc,		/* addr of inst, used for PC-rels */
+              FILE *stream);		/* output stream */
 
 #endif /* ALPHA_H */
 
@@ -608,7 +617,8 @@ typedef word_t MD_INST_TYPE;
 
 /* well known registers */
 enum { REG_V0, REG_A0=16, REG_A1, REG_A2, REG_A3, REG_A4, REG_A5, REG_ERR=7,
-       REG_GP=29, REG_SP, REG_ZERO, REG_RA=26 };
+       REG_GP=29, REG_SP, REG_ZERO, REG_RA=26
+     };
 
 /* total number of register in processor 32I+32F+HI+LO+FCC+TMP+MEM+CTRL */
 #define MD_TOTAL_REGS							\
