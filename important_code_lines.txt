@@ -1,0 +1,59 @@
+Variables
+	Set automatically or by config
+		ruu_branch_penalty	-	line 108
+		pred_type			-	line 114
+		bimod_nelt			-	line 117
+		bimod_config		-	line 118
+		twolev_nelt			-	line 122
+		twolev_config		-	line 123
+		comb_nelt			-	line 127
+		comb_config			-	line 128
+		btb_nelt			-	line 135
+		btb_config			-	line 136
+		cache_dl1_opt		-	line 161
+		cache_dl1_lat		-	line 164
+		cache_dl2_opt		-	line 167
+		cache_dl2_lat		-	line 170
+		cache_il1_opt		-	line 173
+		cache_il1_lat		-	line 176
+		cache_il2_opt		-	line 179
+		cache_il2_lat		-	line 182
+		itlb_opt			-	line 199
+		tlb_miss_lat		-	line 205
+		pred_perfect		-	line 365
+		bpred_spec_opt		-	line 368	//speculative branch prediction update
+		bpred_spec_update	-	line 369	//speculative branch prediction update
+		spec_mode			-	line 359	//are instructions being executed speculatively
+
+	Not set automatically
+
+Structs
+	cache_il1				-	line 372
+	cache_il2				-	line 375
+	cache_dl1				-	line 378
+	cache_dl2				-	line 381
+	itlb					-	line 384
+	pred					-	line 390
+	RUU_station				-	line 1491
+
+Methods
+	il1_access_fn			-	line 484
+	il2_access_fn			-	line 514
+	itlb_access_fn			-	line 534
+	ruu_commit				-	line 2138
+	ruu_recover				-	line 2289
+	rspec_dump				-	line 2875
+	fetch_init				-	line 4161
+	fetch_dump				-	line 4177
+	ruu_fetch				-	line 4218
+	sim_main				-	line 4443
+
+Statistics
+	sim_num_branches		-	line 326	//number of branches committed
+	sim_total_branches		-	line 329	//number of branches executed
+	register cache stats	-	lines 1301	//automatically adds all cache-related stats
+
+Other
+	something to do with branch predictor updating	-	line 2231
+	activating recovery								-	line 2402
+	speculatively updating branch predictor			-	line 2419
