@@ -181,6 +181,12 @@ static char *cache_il2_opt;
 /* l2 instruction cache hit latency (in cycles) */
 static int cache_il2_lat;
 
+/* not-taken instruction buffer config, i.e., {<config>|none} */
+static char *not_taken_opt;
+
+/* not-taken instruction buffer hit latency (in cycles) */
+static int not_taken_lat;
+
 /* flush caches on system calls */
 static int flush_on_syscalls;
 
@@ -371,7 +377,7 @@ static enum { spec_ID, spec_WB, spec_CT } bpred_spec_update;
 /* level 1 instruction cache, entry level instruction cache */
 static struct cache_t *cache_il1;
 
-/* level 1 instruction cache */
+/* level 2 instruction cache */
 static struct cache_t *cache_il2;
 
 /* level 1 data cache, entry level data cache */
@@ -388,6 +394,9 @@ static struct cache_t *dtlb;
 
 /* branch predictor */
 static struct bpred_t *pred;
+
+/* not-taken instruction cache */
+static struct cache_t *not_taken;
 
 /* functional unit resource pool */
 static struct res_pool *fu_pool = NULL;
@@ -524,6 +533,22 @@ il2_access_fn(enum mem_cmd cmd,		/* access cmd, Read or Write */
         panic("writes to instruction memory not supported");
 }
 
+/* not-taken branch buffer block miss handler function */
+static unsigned int			/* latency of block access */
+ntb_access_fn(enum mem_cmd cmd,		/* access cmd, Read or Write */
+              md_addr_t baddr,		/* block address to access */
+              int bsize,		/* size of block to access */
+              struct cache_blk_t *blk,	/* ptr to block in upper level */
+              tick_t now)		/* time of access */
+{
+    unsigned int lat;
+
+    /* access main memory */
+    if (cmd == Read)
+        return mem_access_latency(bsize);
+    else
+        panic("writes to instruction memory not supported");
+}
 
 /*
  * TLB miss handlers
@@ -568,7 +593,6 @@ dtlb_access_fn(enum mem_cmd cmd,	/* access cmd, Read or Write */
     /* return tlb miss latency */
     return tlb_miss_lat;
 }
-
 
 /* register simulator-specific options */
 void
@@ -803,6 +827,16 @@ sim_reg_options(struct opt_odb_t *odb)
     opt_reg_int(odb, "-cache:il2lat",
                 "l2 instruction cache hit latency (in cycles)",
                 &cache_il2_lat, /* default */6,
+                /* print */TRUE, /* format */NULL);
+
+    opt_reg_string(odb, "-not_taken_buf:ntb",
+                   "not-taken branch instruction buffer config, i.e., {<config>|none}",
+                   &not_taken_opt, "ntb",
+                   /* print */TRUE, NULL);
+
+    opt_reg_int(odb, "-not_taken_buf:ntblat",
+                "not-taken branch instruction buffer hit latency (in cycles)",
+                &not_taken_lat, /* default */6,
                 /* print */TRUE, /* format */NULL);
 
     opt_reg_flag(odb, "-cache:flush", "flush caches on system calls",
@@ -1096,6 +1130,21 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
         }
     }
 
+    /* use a not-taken branch I-buffer? */
+    if (!mystricmp(not_taken_opt, "none"))
+    {
+        not_taken = NULL;
+    }
+    else /* ntb is defined */
+    {
+        if (sscanf(not_taken_opt, "%[^:]:%d:%d:%d:%c",
+                   name, &nsets, &bsize, &assoc, &c) != 5)
+            fatal("bad not-taken I-buffer parms: <name>:<nsets>:<bsize>:<assoc>:<repl>");
+        not_taken = cache_create(name, nsets, bsize, /* balloc */FALSE,
+                                 /* usize */0, assoc, cache_char2policy(c),
+                                 ntb_access_fn, /* hit lat */not_taken_lat);
+    }
+
     /* use an I-TLB? */
     if (!mystricmp(itlb_opt, "none"))
         itlb = NULL;
@@ -1135,6 +1184,9 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
 
     if (cache_il2_lat < 1)
         fatal("l2 instruction cache latency must be greater than zero");
+
+    if (not_taken_lat < 1)
+        fatal("not-taken instruction buffer latency must be greater than zero");
 
     if (mem_nelt != 2)
         fatal("bad memory access latency (<first_chunk> <inter_chunk>)");
@@ -1305,6 +1357,8 @@ sim_reg_stats(struct stat_sdb_t *sdb)   /* stats database */
     if (cache_il2
             && (cache_il2 != cache_dl1 && cache_il2 != cache_dl2))
         cache_reg_stats(cache_il2, sdb);
+    if (not_taken)
+        cache_reg_stats(not_taken, sdb);
     if (cache_dl1)
         cache_reg_stats(cache_dl1, sdb);
     if (cache_dl2)
