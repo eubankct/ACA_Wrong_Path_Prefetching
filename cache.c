@@ -866,3 +866,102 @@ cache_flush_addr(struct cache_t *cp,	/* cache instance to flush */
     /* return latency of the operation */
     return lat;
 }
+
+/* disassemble an Alpha instruction */
+void
+md_get_cache_insn(md_inst_t inst,		/* instruction to disassemble */
+              md_addr_t pc,		/* addr of inst in cache */
+              char *stream)		/* output stream */
+{
+    enum md_opcode op;
+
+    /* decode the instruction, assumes predecoded text segment */
+    MD_SET_OPCODE(op, inst);
+
+    /* disassemble the instruction */
+    if (op <= OP_NA || op >= OP_MAX)
+    {
+        /* bogus instruction */
+        sprintf(stream, "<invalid inst: 0x%08x>", inst);
+    }
+    else
+    {
+        char *s;
+
+        /* FIXME: %-10s crashes on Suns!!! */
+        sprintf(stream, "%s ", MD_OP_NAME(op));
+
+        s = MD_OP_FORMAT(op);
+        while (*s)
+        {
+            switch (*s)
+            {
+            case 'a':
+                sprintf(stream, "r%d", RA);
+                break;
+            case 'b':
+                sprintf(stream, "r%d", RB);
+                break;
+            case 'c':
+                sprintf(stream, "r%d", RC);
+                break;
+            case 'A':
+                sprintf(stream, "f%d", RA);
+                break;
+            case 'B':
+                sprintf(stream, "f%d", RB);
+                break;
+            case 'C':
+                sprintf(stream, "f%d", RC);
+                break;
+            case 'o':
+                sprintf(stream, "%d", (sword_t)SEXT(OFS));
+                break;
+            case 'j':
+                mysprintf(stream, "0x%p", pc + (SEXT(OFS) << 2) + 4);
+                break;
+            case 'J':
+                mysprintf(stream, "0x%p", pc + (SEXT21(TARG) << 2) + 4);
+                break;
+            case 'i':
+                sprintf(stream, "%d", (word_t)IMM);
+                break;
+            default:
+                /* anything unrecognized, e.g., '.' is just passed through */
+                strncat(stream, *s, strlen(s));
+            }
+            s++;
+        }
+    }
+}
+
+/* print the entire cache to a file */
+void
+cache_dump(struct cache_t *cp,		/* cache instance to flush */
+            md_addr_t pc,           /* pc address when dump called */
+            FILE *fout)			/* file to print cache to */
+{
+    int i, lat = cp->hit_latency; /* min latency to probe cache */
+    struct cache_blk_t *blk;
+    char *inst_str;
+
+    /* no way list updates required because all blocks are being invalidated */
+    for (i=0; i<cp->nsets; i++)
+    {
+        for (blk=cp->sets[i].way_head; blk; blk=blk->way_next)
+        {
+            if (!(blk->status & CACHE_BLK_VALID))
+            {
+                fprintf(fout, "invalid");
+            }
+            else
+            {
+                md_get_cache_insn((md_inst_t) blk->data, pc, inst_str);
+                fprintf(fout, "0x%08x\t%s", blk, instr_str);
+            }
+        }
+    }
+
+    /* return latency of the flush operation */
+    return lat;
+}

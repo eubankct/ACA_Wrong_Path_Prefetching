@@ -36,3 +36,5 @@ sysprobe
 libexo/exolex.o
 libexo/libexo.o
 OUT
+tests-alpha/sysprobe
+tests-pisa/sysprobe

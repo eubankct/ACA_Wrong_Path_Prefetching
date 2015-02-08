@@ -831,7 +831,7 @@ sim_reg_options(struct opt_odb_t *odb)
 
     opt_reg_string(odb, "-not_taken_buf:ntb",
                    "not-taken branch instruction buffer config, i.e., {<config>|none}",
-                   &not_taken_opt, "ntb",
+                   &not_taken_opt, "none",
                    /* print */TRUE, NULL);
 
     opt_reg_int(odb, "-not_taken_buf:ntblat",
@@ -4496,6 +4496,8 @@ simoo_mstate_obj(FILE *stream,			/* output stream */
 void
 sim_main(void)
 {
+    FILE *fetch_contents = fopen("Fetch_Contents.txt", "w");
+
     /* ignore any floating point exceptions, they may occur on mis-speculated
        execution paths */
     signal(SIGFPE, SIG_IGN);
@@ -4656,7 +4658,11 @@ sim_main(void)
 
         /* call instruction fetch unit if it is not blocked */
         if (!ruu_fetch_issue_delay)
+        {
             ruu_fetch();
+            //if((1500 < sim_cycle) && (sim_cycle < 2000))
+                //fetch_dump(fetch_contents);
+        }
         else
             ruu_fetch_issue_delay--;
 
@@ -4675,4 +4681,5 @@ sim_main(void)
         if (max_insts && sim_num_insn >= max_insts)
             return;
     }
+    fclose(fetch_contents);
 }
