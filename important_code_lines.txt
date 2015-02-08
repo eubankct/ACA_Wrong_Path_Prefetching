@@ -25,6 +25,7 @@ Variables
 		bpred_spec_update	-	line 369	//speculative branch prediction update
 		spec_mode			-	line 359	//are instructions being executed speculatively
 		fetch_data			- 	line 3009	//structure houses branch prediction output PC
+		target_address		-	line 4351	//compute target of branch for bpred_lookup
 	Not set automatically
 
 Structs
@@ -47,7 +48,7 @@ Methods
 	fetch_init				-	line 4215
 	fetch_dump				-	line 4231
 	ruu_fetch				-	line 4272
-	bpred_lookup			-	called line 4357, defined in bpred.c line 560
+	bpred_lookup			-	line 4358
 	sim_main				-	line 4443
 
 Statistics

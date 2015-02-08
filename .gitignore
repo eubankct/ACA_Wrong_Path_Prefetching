@@ -38,3 +38,6 @@ libexo/libexo.o
 OUT
 tests-alpha/sysprobe
 tests-pisa/sysprobe
+.project
+.cproject
+.settings/
