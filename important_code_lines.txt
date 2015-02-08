@@ -24,7 +24,7 @@ Variables
 		bpred_spec_opt		-	line 368	//speculative branch prediction update
 		bpred_spec_update	-	line 369	//speculative branch prediction update
 		spec_mode			-	line 359	//are instructions being executed speculatively
-
+		fetch_data			- 	line 3009	//structure houses branch prediction output PC
 	Not set automatically
 
 Structs
@@ -35,6 +35,7 @@ Structs
 	itlb					-	line 384
 	pred					-	line 390
 	RUU_station				-	line 1491
+	fetch_rec				-	line 3001
 
 Methods
 	il1_access_fn			-	line 484
@@ -43,9 +44,10 @@ Methods
 	ruu_commit				-	line 2138
 	ruu_recover				-	line 2289
 	rspec_dump				-	line 2875
-	fetch_init				-	line 4161
-	fetch_dump				-	line 4177
-	ruu_fetch				-	line 4218
+	fetch_init				-	line 4215
+	fetch_dump				-	line 4231
+	ruu_fetch				-	line 4272
+	bpred_lookup			-	called line 4357, defined in bpred.c line 560
 	sim_main				-	line 4443
 
 Statistics
@@ -54,6 +56,10 @@ Statistics
 	register cache stats	-	lines 1301	//automatically adds all cache-related stats
 
 Other
-	something to do with branch predictor updating	-	line 2231
+	branch predictor post execute update			-	line 2285, 2478 //what was prediction, was it correct, etc.
 	activating recovery								-	line 2402
 	speculatively updating branch predictor			-	line 2419
+
+
+
+fetch_pred_PC line 4356
