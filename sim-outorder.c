@@ -4267,7 +4267,7 @@ static int last_inst_missed = FALSE;
 static int last_inst_tmissed = FALSE;
 
 /* fetch up as many instruction as one branch prediction and one cache line
-   acess will support without overflowing the IFETCH -> DISPATCH QUEUE */
+   access will support without overflowing the IFETCH -> DISPATCH QUEUE */
 static void
 ruu_fetch(void)
 {
@@ -4348,6 +4348,7 @@ ruu_fetch(void)
 
             /* pre-decode instruction, used for bpred stats recording */
             MD_SET_OPCODE(op, inst);
+            int target_address = (fetch_regs_PC + (SEXT21((inst) & 0x1FFFFF)) << 2) + 4;
 
             /* get the next predicted fetch address; only use branch predictor
                result for branches (assumes pre-decode bits); NOTE: returned
@@ -4356,7 +4357,7 @@ ruu_fetch(void)
                 fetch_pred_PC =
                     bpred_lookup(pred,
                                  /* branch address */fetch_regs_PC,
-                                 /* target address *//* FIXME: not computed */0,
+                                 /* target address */target_address,
                                  /* opcode */op,
                                  /* call? */MD_IS_CALL(op),
                                  /* return? */MD_IS_RETURN(op),
