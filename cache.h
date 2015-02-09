@@ -299,4 +299,10 @@ cache_flush_addr(struct cache_t *cp,	/* cache instance to flush */
                  md_addr_t addr,	/* address of block to flush */
                  tick_t now);		/* time of cache flush */
 
+/* print the entire cache to a file */
+void
+cache_dump(struct cache_t *cp,		/* cache instance to flush */
+            md_addr_t pc,           /* pc address when dump called */
+            FILE *fout);			/* file to print cache to */
+
 #endif /* CACHE_H */

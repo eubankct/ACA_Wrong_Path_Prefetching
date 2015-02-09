@@ -4543,7 +4543,7 @@ simoo_mstate_obj(FILE *stream,			/* output stream */
 void
 sim_main(void)
 {
-    FILE *fetch_contents = fopen("Fetch_Contents.txt", "w");
+    FILE *fetch_contents = fopen("Fetch_Contents.txt", "w"), *inst_cache_contents = fopen("Inst_Cache_Contents.txt", "w");
 
     /* ignore any floating point exceptions, they may occur on mis-speculated
        execution paths */
@@ -4721,6 +4721,13 @@ sim_main(void)
         LSQ_count += LSQ_num;
         LSQ_fcount += ((LSQ_num == LSQ_size) ? 1 : 0);
 
+        if((1500 < sim_cycle) && (sim_cycle < 2000))
+        {
+            fprintf(inst_cache_contents, "--- cycle %d ---\n", sim_cycle);
+            cache_dump(cache_il1, fetch_regs_PC, inst_cache_contents);
+            fprintf(inst_cache_contents, "\n");
+        }
+
         /* go to next cycle */
         sim_cycle++;
 
@@ -4729,4 +4736,5 @@ sim_main(void)
             return;
     }
     fclose(fetch_contents);
+    fclose(inst_cache_contents);
 }

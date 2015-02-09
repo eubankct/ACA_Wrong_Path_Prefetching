@@ -882,14 +882,14 @@ md_get_cache_insn(md_inst_t inst,		/* instruction to disassemble */
     if (op <= OP_NA || op >= OP_MAX)
     {
         /* bogus instruction */
-        sprintf(stream, "<invalid inst: 0x%08x>", inst);
+        fprintf(stream, "<invalid inst: 0x%08x>", inst);
     }
     else
     {
         char *s;
 
         /* FIXME: %-10s crashes on Suns!!! */
-        sprintf(stream, "%s ", MD_OP_NAME(op));
+        fprintf(stream, "%s ", MD_OP_NAME(op));
 
         s = MD_OP_FORMAT(op);
         while (*s)
@@ -897,38 +897,38 @@ md_get_cache_insn(md_inst_t inst,		/* instruction to disassemble */
             switch (*s)
             {
             case 'a':
-                sprintf(stream, "r%d", RA);
+                fprintf(stream, "r%d", RA);
                 break;
             case 'b':
-                sprintf(stream, "r%d", RB);
+                fprintf(stream, "r%d", RB);
                 break;
             case 'c':
-                sprintf(stream, "r%d", RC);
+                fprintf(stream, "r%d", RC);
                 break;
             case 'A':
-                sprintf(stream, "f%d", RA);
+                fprintf(stream, "r%d", RA);
                 break;
             case 'B':
-                sprintf(stream, "f%d", RB);
+                fprintf(stream, "r%d", RB);
                 break;
             case 'C':
-                sprintf(stream, "f%d", RC);
+                fprintf(stream, "r%d", RC);
                 break;
             case 'o':
-                sprintf(stream, "%d", (sword_t)SEXT(OFS));
+                fprintf(stream, "%d", (sword_t)SEXT(OFS));
                 break;
             case 'j':
-                mysprintf(stream, "0x%p", pc + (SEXT(OFS) << 2) + 4);
+                myfprintf(stream, "0x%p", pc + (SEXT(OFS) << 2) + 4);
                 break;
             case 'J':
-                mysprintf(stream, "0x%p", pc + (SEXT21(TARG) << 2) + 4);
+                myfprintf(stream, "0x%p", pc + (SEXT21(TARG) << 2) + 4);
                 break;
             case 'i':
-                sprintf(stream, "%d", (word_t)IMM);
+                fprintf(stream, "%d", (word_t)IMM);
                 break;
             default:
                 /* anything unrecognized, e.g., '.' is just passed through */
-                strncat(stream, *s, strlen(s));
+                fputc(*s, stream);
             }
             s++;
         }
@@ -943,23 +943,26 @@ cache_dump(struct cache_t *cp,		/* cache instance to flush */
 {
     int i, lat = cp->hit_latency; /* min latency to probe cache */
     struct cache_blk_t *blk;
-    char *inst_str;
 
     /* no way list updates required because all blocks are being invalidated */
     for (i=0; i<cp->nsets; i++)
     {
+        fprintf(fout, "set %d:\n", i);
         for (blk=cp->sets[i].way_head; blk; blk=blk->way_next)
         {
+            fprintf(fout, "%p: ", blk);
             if (!(blk->status & CACHE_BLK_VALID))
             {
-                fprintf(fout, "invalid");
+                fprintf(fout, "invalid\t");
             }
             else
             {
-                md_get_cache_insn((md_inst_t) blk->data, pc, inst_str);
-                fprintf(fout, "0x%08x\t%s", blk, inst_str);
+                md_get_cache_insn((md_inst_t) blk->data, pc, fout);
+                fprintf(fout, "\t");
             }
+            fprintf(fout, "\n");
         }
+        //printf(fout, "\n");
     }
 
     /* return latency of the flush operation */
