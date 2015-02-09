@@ -632,7 +632,7 @@ bpred_lookup(struct bpred_t *pred,	/* branch predictor instance */
         }
         else
         {
-            return btarget;
+            return -1;
         }
     default:
         panic("bogus predictor class");
