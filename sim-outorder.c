@@ -80,6 +80,8 @@
  * pipeline operations.
  */
 
+static int retro_bpred_count = 1;
+
 /* simulated registers */
 static struct regs_t regs;
 
@@ -2313,9 +2315,13 @@ ruu_commit(void)
                          /* correct pred? */rs->pred_PC == rs->next_PC,
                          /* opcode */rs->op,
                          /* dir predictor update pointer */&rs->dir_update);
+
+            /* if predicted taken */
             if(rs->pred_PC != (regs.regs_PC + sizeof(md_inst_t)))
             {
-				pred_taken_count++;
+				if (retro_bpred_count)
+					pred_taken_count++;
+				/* if prediction was correct */
 				if(rs->pred_PC == regs.regs_NPC)
 				{
 					corr_taken_pred++;
@@ -2512,7 +2518,8 @@ ruu_writeback(void)
                          /* dir predictor update pointer */&rs->dir_update);
             if(rs->pred_PC != (regs.regs_PC + sizeof(md_inst_t)))
 			{
-				pred_taken_count++;
+            	if (retro_bpred_count)
+            		pred_taken_count++;
 				if(rs->pred_PC == regs.regs_NPC)
 				{
 					corr_taken_pred++;
@@ -4180,7 +4187,8 @@ ruu_dispatch(void)
                                  /* predictor update ptr */&rs->dir_update);
                     if(pred_PC != (regs.regs_PC + sizeof(md_inst_t)))
                     {
-                    	pred_taken_count++;
+                    	if (retro_bpred_count)
+                    		pred_taken_count++;
                     	if(pred_PC == regs.regs_NPC)
                     	{
                     		corr_taken_pred++;
@@ -4389,8 +4397,8 @@ ruu_fetch(void)
 
             /* pre-decode instruction, used for bpred stats recording */
             MD_SET_OPCODE(op, inst);
-            //int target_address = (fetch_regs_PC + (SEXT21((inst) & 0x1FFFFF)) << 2) + 4;
-            int target_address = fetch_regs_PC + 4 + 4;
+            int target_address = (fetch_regs_PC + (SEXT21((inst) & 0x1FFFFF)) << 2) + 4;
+            //int target_address = 0;
 
             /* get the next predicted fetch address; only use branch predictor
                result for branches (assumes pre-decode bits); NOTE: returned
@@ -4408,9 +4416,12 @@ ruu_fetch(void)
             else
                 fetch_pred_PC = 0;
 
-            if (fetch_pred_PC == target_address){
-            	/* FIXME: set flag to true */
+            if (fetch_pred_PC == target_address && !retro_bpred_count){
+            	pred_taken_count++;
             }
+
+            if (fetch_pred_PC == -1)
+            	fetch_pred_PC = target_address;
 
             /* valid address returned from branch predictor? */
             if (!fetch_pred_PC)
