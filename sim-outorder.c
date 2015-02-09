@@ -334,6 +334,12 @@ static counter_t sim_num_branches = 0;
 /* total number of branches executed */
 static counter_t sim_total_branches = 0;
 
+/* total number of branches predicted taken */
+static counter_t pred_taken_count = 0;
+
+/* total number of branches predicted taken actually taken */
+static counter_t corr_taken_pred = 0;
+
 /* cycle counter */
 static tick_t sim_cycle = 0;
 
@@ -1280,6 +1286,17 @@ sim_reg_stats(struct stat_sdb_t *sdb)   /* stats database */
     stat_reg_counter(sdb, "sim_total_branches",
                      "total number of branches executed",
                      &sim_total_branches, /* initial value */0, /* format */NULL);
+
+
+    stat_reg_counter(sdb, "pred_taken_count",
+    				 "total number of branches predicted taken",
+    				 &pred_taken_count, 0, NULL);
+    stat_reg_counter(sdb, "corr_taken_pred",
+    				 "number of correctly predicted taken branches",
+    				 &corr_taken_pred, 0, NULL);
+    stat_reg_formula(sdb, "frac_corr_pred_taken",
+    				 "fraction of predicted taken branches that were correct",
+    				 "corr_taken_pred / pred_taken_count", NULL);
 
     /* register performance stats */
     stat_reg_counter(sdb, "sim_cycle",
@@ -2296,6 +2313,14 @@ ruu_commit(void)
                          /* correct pred? */rs->pred_PC == rs->next_PC,
                          /* opcode */rs->op,
                          /* dir predictor update pointer */&rs->dir_update);
+            if(rs->pred_PC != (regs.regs_PC + sizeof(md_inst_t)))
+            {
+				pred_taken_count++;
+				if(rs->pred_PC == regs.regs_NPC)
+				{
+					corr_taken_pred++;
+				}
+            }
         }
 
         /* invalidate RUU operation instance */
@@ -2485,6 +2510,14 @@ ruu_writeback(void)
                          /* correct pred? */rs->pred_PC == rs->next_PC,
                          /* opcode */rs->op,
                          /* dir predictor update pointer */&rs->dir_update);
+            if(rs->pred_PC != (regs.regs_PC + sizeof(md_inst_t)))
+			{
+				pred_taken_count++;
+				if(rs->pred_PC == regs.regs_NPC)
+				{
+					corr_taken_pred++;
+				}
+			}
         }
 
         /* entered writeback stage, indicate in pipe trace */
@@ -4145,6 +4178,14 @@ ruu_dispatch(void)
                                  /* correct pred? */pred_PC == regs.regs_NPC,
                                  /* opcode */op,
                                  /* predictor update ptr */&rs->dir_update);
+                    if(pred_PC != (regs.regs_PC + sizeof(md_inst_t)))
+                    {
+                    	pred_taken_count++;
+                    	if(pred_PC == regs.regs_NPC)
+                    	{
+                    		corr_taken_pred++;
+                    	}
+                    }
                 }
             }
 
@@ -4348,7 +4389,8 @@ ruu_fetch(void)
 
             /* pre-decode instruction, used for bpred stats recording */
             MD_SET_OPCODE(op, inst);
-            int target_address = (fetch_regs_PC + (SEXT21((inst) & 0x1FFFFF)) << 2) + 4;
+            //int target_address = (fetch_regs_PC + (SEXT21((inst) & 0x1FFFFF)) << 2) + 4;
+            int target_address = fetch_regs_PC + 4 + 4;
 
             /* get the next predicted fetch address; only use branch predictor
                result for branches (assumes pre-decode bits); NOTE: returned
@@ -4365,6 +4407,10 @@ ruu_fetch(void)
                                  /* RSB index */&stack_recover_idx);
             else
                 fetch_pred_PC = 0;
+
+            if (fetch_pred_PC == target_address){
+            	/* FIXME: set flag to true */
+            }
 
             /* valid address returned from branch predictor? */
             if (!fetch_pred_PC)

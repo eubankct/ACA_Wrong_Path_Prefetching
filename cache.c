@@ -957,11 +957,11 @@ cache_dump(struct cache_t *cp,		/* cache instance to flush */
             else
             {
                 md_get_cache_insn((md_inst_t) blk->data, pc, inst_str);
-                fprintf(fout, "0x%08x\t%s", blk, instr_str);
+                fprintf(fout, "0x%08x\t%s", blk, inst_str);
             }
         }
     }
 
     /* return latency of the flush operation */
-    return lat;
+    return;
 }
