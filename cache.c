@@ -871,7 +871,7 @@ cache_flush_addr(struct cache_t *cp,	/* cache instance to flush */
 void
 md_get_cache_insn(md_inst_t inst,		/* instruction to disassemble */
               md_addr_t pc,		/* addr of inst in cache */
-              char *stream)		/* output stream */
+              FILE *stream)		/* output stream */
 {
     enum md_opcode op;
 

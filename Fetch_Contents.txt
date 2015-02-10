@@ -1,0 +1,848 @@
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004ac0, recover_PC: 0x120004ab0
+fetch_regs_PC: 0x120004ac4, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 2
+fetch_head: 2, fetch_tail: 0
+idx:  2: inst: `bis r0,r0,r1'
+         regs_PC: 0x120004ac0, pred_PC: 0x120004ac4
+idx:  3: inst: `bge r0,0x120004ad0'
+         regs_PC: 0x120004ac4, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x120004ab0
+fetch_regs_PC: 0x120004adc, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 0, fetch_tail: 0
+idx:  0: inst: `ldq r19,-31936(r29)'
+         regs_PC: 0x120004ad0, pred_PC: 0x120004ad4
+idx:  1: inst: `s8addq r0,r19,r4'
+         regs_PC: 0x120004ad4, pred_PC: 0x120004ad8
+idx:  2: inst: `ldq r18,0(r4)'
+         regs_PC: 0x120004ad8, pred_PC: 0x120004adc
+idx:  3: inst: `bne r18,0x120004b08'
+         regs_PC: 0x120004adc, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x120004ab0
+fetch_regs_PC: 0x120004ae0, fetch_pred_PC: 0x120004ae0
+
+** fetch queue contents **
+fetch_num: 0
+fetch_head: 0, fetch_tail: 0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x120004ab0
+fetch_regs_PC: 0x120004ae8, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 3
+fetch_head: 0, fetch_tail: 3
+idx:  0: inst: `bis r1,r1,r16'
+         regs_PC: 0x120004ae0, pred_PC: 0x120004ae4
+idx:  1: inst: `stl r1,32(r30)'
+         regs_PC: 0x120004ae4, pred_PC: 0x120004ae8
+idx:  2: inst: `bsr r26,0x120004b78'
+         regs_PC: 0x120004ae8, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x120004ab0
+fetch_regs_PC: 0x120004b78, fetch_pred_PC: 0x120004b78
+
+** fetch queue contents **
+fetch_num: 0
+fetch_head: 0, fetch_tail: 0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x120004ab0
+fetch_regs_PC: 0x120004b80, fetch_pred_PC: 0x120004b80
+
+** fetch queue contents **
+fetch_num: 2
+fetch_head: 0, fetch_tail: 2
+idx:  0: inst: `lda r30,-128(r30)'
+         regs_PC: 0x120004b78, pred_PC: 0x120004b7c
+idx:  1: inst: `stq r26,0(r30)'
+         regs_PC: 0x120004b7c, pred_PC: 0x120004b80
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004b80, recover_PC: 0x120004ab0
+fetch_regs_PC: 0x120004b8c, fetch_pred_PC: 0x120004b90
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 2, fetch_tail: 2
+idx:  2: inst: `addl r16,0,r2'
+         regs_PC: 0x120004b80, pred_PC: 0x120004b84
+idx:  3: inst: `addl r2,4,r3'
+         regs_PC: 0x120004b84, pred_PC: 0x120004b88
+idx:  0: inst: `addq r31,1,r4'
+         regs_PC: 0x120004b88, pred_PC: 0x120004b8c
+idx:  1: inst: `sll r4,r3,r0'
+         regs_PC: 0x120004b8c, pred_PC: 0x120004b90
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004b90, recover_PC: 0x120004ab0
+fetch_regs_PC: 0x120004b94, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 2
+fetch_head: 2, fetch_tail: 0
+idx:  2: inst: `bis r0,r0,r18'
+         regs_PC: 0x120004b90, pred_PC: 0x120004b94
+idx:  3: inst: `beq r0,0x120004cd0'
+         regs_PC: 0x120004b94, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x120004ab0
+fetch_regs_PC: 0x120004ba0, fetch_pred_PC: 0x120004ba0
+
+** fetch queue contents **
+fetch_num: 2
+fetch_head: 0, fetch_tail: 2
+idx:  0: inst: `ldq r0,-31976(r29)'
+         regs_PC: 0x120004b98, pred_PC: 0x120004b9c
+idx:  1: inst: `ldl r0,0(r0)'
+         regs_PC: 0x120004b9c, pred_PC: 0x120004ba0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004ba0, recover_PC: 0x120004ab0
+fetch_regs_PC: 0x120004ba4, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 2
+fetch_head: 2, fetch_tail: 0
+idx:  2: inst: `cmpult r18,r0,r5'
+         regs_PC: 0x120004ba0, pred_PC: 0x120004ba4
+idx:  3: inst: `beq r5,0x120004bd0'
+         regs_PC: 0x120004ba4, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x120004ab0
+fetch_regs_PC: 0x120004bb4, fetch_pred_PC: 0x120004bb8
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 0, fetch_tail: 0
+idx:  0: inst: `ldq r27,-31912(r29)'
+         regs_PC: 0x120004ba8, pred_PC: 0x120004bac
+idx:  1: inst: `bis r0,r0,r1'
+         regs_PC: 0x120004bac, pred_PC: 0x120004bb0
+idx:  2: inst: `bis r18,r31,r25'
+         regs_PC: 0x120004bb0, pred_PC: 0x120004bb4
+idx:  3: inst: `bis r0,r31,r24'
+         regs_PC: 0x120004bb4, pred_PC: 0x120004bb8
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004bb8, recover_PC: 0x120004ab0
+fetch_regs_PC: 0x120004bb8, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 1
+fetch_head: 0, fetch_tail: 1
+idx:  0: inst: `jsr r23,(r27)'
+         regs_PC: 0x120004bb8, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: t
+pred_PC: 0x00000001, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x0000000d, fetch_pred_PC: 0x00000011
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 1, fetch_tail: 1
+idx:  1: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000001, pred_PC: 0x00000005
+idx:  2: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000005, pred_PC: 0x00000009
+idx:  3: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000009, pred_PC: 0x0000000d
+idx:  0: inst: `addq r31,r31,r31'
+         regs_PC: 0x0000000d, pred_PC: 0x00000011
+** fetch stage state **
+spec_mode: t
+pred_PC: 0x00000011, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x0000001d, fetch_pred_PC: 0x00000021
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 1, fetch_tail: 1
+idx:  1: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000011, pred_PC: 0x00000015
+idx:  2: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000015, pred_PC: 0x00000019
+idx:  3: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000019, pred_PC: 0x0000001d
+idx:  0: inst: `addq r31,r31,r31'
+         regs_PC: 0x0000001d, pred_PC: 0x00000021
+** fetch stage state **
+spec_mode: t
+pred_PC: 0x00000021, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x0000002d, fetch_pred_PC: 0x00000031
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 1, fetch_tail: 1
+idx:  1: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000021, pred_PC: 0x00000025
+idx:  2: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000025, pred_PC: 0x00000029
+idx:  3: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000029, pred_PC: 0x0000002d
+idx:  0: inst: `addq r31,r31,r31'
+         regs_PC: 0x0000002d, pred_PC: 0x00000031
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000021, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b2e0, fetch_pred_PC: 0x12000b2e0
+
+** fetch queue contents **
+fetch_num: 0
+fetch_head: 0, fetch_tail: 0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000021, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b2ec, fetch_pred_PC: 0x12000b2f0
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 0, fetch_tail: 0
+idx:  0: inst: `lda r30,-48(r30)'
+         regs_PC: 0x12000b2e0, pred_PC: 0x12000b2e4
+idx:  1: inst: `ldah r29,8192(r27)'
+         regs_PC: 0x12000b2e4, pred_PC: 0x12000b2e8
+idx:  2: inst: `stq r23,0(r30)'
+         regs_PC: 0x12000b2e8, pred_PC: 0x12000b2ec
+idx:  3: inst: `lda r29,2880(r29)'
+         regs_PC: 0x12000b2ec, pred_PC: 0x12000b2f0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b2f0, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b2fc, fetch_pred_PC: 0x12000b300
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 0, fetch_tail: 0
+idx:  0: inst: `stq r1,8(r30)'
+         regs_PC: 0x12000b2f0, pred_PC: 0x12000b2f4
+idx:  1: inst: `stq r16,40(r30)'
+         regs_PC: 0x12000b2f4, pred_PC: 0x12000b2f8
+idx:  2: inst: `stq r2,16(r30)'
+         regs_PC: 0x12000b2f8, pred_PC: 0x12000b2fc
+idx:  3: inst: `stq r3,24(r30)'
+         regs_PC: 0x12000b2fc, pred_PC: 0x12000b300
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b300, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b300, fetch_pred_PC: 0x12000b300
+
+** fetch queue contents **
+fetch_num: 0
+fetch_head: 0, fetch_tail: 0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b300, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b30c, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 0, fetch_tail: 0
+idx:  0: inst: `stq r4,32(r30)'
+         regs_PC: 0x12000b300, pred_PC: 0x12000b304
+idx:  1: inst: `ldq r4,-30864(r29)'
+         regs_PC: 0x12000b304, pred_PC: 0x12000b308
+idx:  2: inst: `lda r4,16384(r4)'
+         regs_PC: 0x12000b308, pred_PC: 0x12000b30c
+idx:  3: inst: `beq r25,0x12000b4f0'
+         regs_PC: 0x12000b30c, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b314, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 2
+fetch_head: 0, fetch_tail: 2
+idx:  0: inst: `cmpule r24,r25,r1'
+         regs_PC: 0x12000b310, pred_PC: 0x12000b314
+idx:  1: inst: `blt r25,0x12000b3e0'
+         regs_PC: 0x12000b314, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b31c, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 2
+fetch_head: 0, fetch_tail: 2
+idx:  0: inst: `cmpbge r31,r25,r3'
+         regs_PC: 0x12000b318, pred_PC: 0x12000b31c
+idx:  1: inst: `bne r1,0x12000b3e0'
+         regs_PC: 0x12000b31c, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b320, fetch_pred_PC: 0x12000b320
+
+** fetch queue contents **
+fetch_num: 0
+fetch_head: 0, fetch_tail: 0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b32c, fetch_pred_PC: 0x12000b330
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 0, fetch_tail: 0
+idx:  0: inst: `xor r3,255,r1'
+         regs_PC: 0x12000b320, pred_PC: 0x12000b324
+idx:  1: inst: `s4addq r1,r4,r1'
+         regs_PC: 0x12000b324, pred_PC: 0x12000b328
+idx:  2: inst: `ldl r28,-16384(r1)'
+         regs_PC: 0x12000b328, pred_PC: 0x12000b32c
+idx:  3: inst: `extbl r25,r28,r1'
+         regs_PC: 0x12000b32c, pred_PC: 0x12000b330
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b330, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b33c, fetch_pred_PC: 0x12000b340
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 0, fetch_tail: 0
+idx:  0: inst: `s4addq r1,r4,r1'
+         regs_PC: 0x12000b330, pred_PC: 0x12000b334
+idx:  1: inst: `ldl r1,-16384(r1)'
+         regs_PC: 0x12000b334, pred_PC: 0x12000b338
+idx:  2: inst: `s8addq r28,r1,r28'
+         regs_PC: 0x12000b338, pred_PC: 0x12000b33c
+idx:  3: inst: `ornot r31,r28,r1'
+         regs_PC: 0x12000b33c, pred_PC: 0x12000b340
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b340, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b340, fetch_pred_PC: 0x12000b340
+
+** fetch queue contents **
+fetch_num: 0
+fetch_head: 0, fetch_tail: 0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b340, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b34c, fetch_pred_PC: 0x12000b350
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 0, fetch_tail: 0
+idx:  0: inst: `sll r25,r1,r1'
+         regs_PC: 0x12000b340, pred_PC: 0x12000b344
+idx:  1: inst: `sll r1,9,r2'
+         regs_PC: 0x12000b344, pred_PC: 0x12000b348
+idx:  2: inst: `bne r2,0x12000b408'
+         regs_PC: 0x12000b348, pred_PC: 0x12000b34c
+idx:  3: inst: `subq r25,1,r2'
+         regs_PC: 0x12000b34c, pred_PC: 0x12000b350
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b350, recover_PC: 0x12000b2e0
+fetch_regs_PC: 0x12000b35c, fetch_pred_PC: 0x12000b360
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 0, fetch_tail: 0
+idx:  0: inst: `and r25,r2,r3'
+         regs_PC: 0x12000b350, pred_PC: 0x12000b354
+idx:  1: inst: `srl r1,54,r27'
+         regs_PC: 0x12000b354, pred_PC: 0x12000b358
+idx:  2: inst: `beq r3,0x12000b3b8'
+         regs_PC: 0x12000b358, pred_PC: 0x12000b35c
+idx:  3: inst: `lda r27,-512(r27)'
+         regs_PC: 0x12000b35c, pred_PC: 0x12000b360
+** fetch stage state **
+spec_mode: t
+pred_PC: 0x12000b360, recover_PC: 0x12000b3b8
+fetch_regs_PC: 0x12000b360, fetch_pred_PC: 0x12000b360
+
+** fetch queue contents **
+fetch_num: 0
+fetch_head: 0, fetch_tail: 0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b360, recover_PC: 0x12000b3b8
+fetch_regs_PC: 0x12000b3b8, fetch_pred_PC: 0x12000b3b8
+
+** fetch queue contents **
+fetch_num: 0
+fetch_head: 0, fetch_tail: 0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b360, recover_PC: 0x12000b3b8
+fetch_regs_PC: 0x12000b3c0, fetch_pred_PC: 0x12000b3c0
+
+** fetch queue contents **
+fetch_num: 2
+fetch_head: 0, fetch_tail: 2
+idx:  0: inst: `ldq r23,0(r30)'
+         regs_PC: 0x12000b3b8, pred_PC: 0x12000b3bc
+idx:  1: inst: `srl r24,r28,r27'
+         regs_PC: 0x12000b3bc, pred_PC: 0x12000b3c0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b3c0, recover_PC: 0x12000b3b8
+fetch_regs_PC: 0x12000b3cc, fetch_pred_PC: 0x12000b3d0
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 2, fetch_tail: 2
+idx:  2: inst: `ldq r1,8(r30)'
+         regs_PC: 0x12000b3c0, pred_PC: 0x12000b3c4
+idx:  3: inst: `ldq r2,16(r30)'
+         regs_PC: 0x12000b3c4, pred_PC: 0x12000b3c8
+idx:  0: inst: `ldq r3,24(r30)'
+         regs_PC: 0x12000b3c8, pred_PC: 0x12000b3cc
+idx:  1: inst: `ldq r16,40(r30)'
+         regs_PC: 0x12000b3cc, pred_PC: 0x12000b3d0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b3d0, recover_PC: 0x12000b3b8
+fetch_regs_PC: 0x12000b3d8, fetch_pred_PC: 0x120004aec
+
+** fetch queue contents **
+fetch_num: 3
+fetch_head: 2, fetch_tail: 1
+idx:  2: inst: `ldq r4,32(r30)'
+         regs_PC: 0x12000b3d0, pred_PC: 0x12000b3d4
+idx:  3: inst: `lda r30,48(r30)'
+         regs_PC: 0x12000b3d4, pred_PC: 0x12000b3d8
+idx:  0: inst: `ret r31,(r23)'
+         regs_PC: 0x12000b3d8, pred_PC: 0x120004aec
+** fetch stage state **
+spec_mode: t
+pred_PC: 0x120004aec, recover_PC: 0x120004bbc
+fetch_regs_PC: 0x120004af8, fetch_pred_PC: 0x120004afc
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 1, fetch_tail: 1
+idx:  1: inst: `ldq r19,-31936(r29)'
+         regs_PC: 0x120004aec, pred_PC: 0x120004af0
+idx:  2: inst: `ldl r1,32(r30)'
+         regs_PC: 0x120004af0, pred_PC: 0x120004af4
+idx:  3: inst: `s8addq r1,r19,r5'
+         regs_PC: 0x120004af4, pred_PC: 0x120004af8
+idx:  0: inst: `ldq r18,0(r5)'
+         regs_PC: 0x120004af8, pred_PC: 0x120004afc
+** fetch stage state **
+spec_mode: t
+pred_PC: 0x120004afc, recover_PC: 0x120004bbc
+fetch_regs_PC: 0x120004afc, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 1
+fetch_head: 1, fetch_tail: 2
+idx:  1: inst: `bne r18,0x120004b08'
+         regs_PC: 0x120004afc, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004afc, recover_PC: 0x120004bbc
+fetch_regs_PC: 0x120004bc0, fetch_pred_PC: 0x120004bc0
+
+** fetch queue contents **
+fetch_num: 1
+fetch_head: 0, fetch_tail: 1
+idx:  0: inst: `bis r27,r31,r17'
+         regs_PC: 0x120004bbc, pred_PC: 0x120004bc0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004bc0, recover_PC: 0x120004bbc
+fetch_regs_PC: 0x120004bcc, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 1, fetch_tail: 1
+idx:  1: inst: `ldah r29,8192(r23)'
+         regs_PC: 0x120004bc0, pred_PC: 0x120004bc4
+idx:  2: inst: `lda r29,29284(r29)'
+         regs_PC: 0x120004bc4, pred_PC: 0x120004bc8
+idx:  3: inst: `addl r17,0,r17'
+         regs_PC: 0x120004bc8, pred_PC: 0x120004bcc
+idx:  0: inst: `br r31,0x120004bd8'
+         regs_PC: 0x120004bcc, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x120004bbc
+fetch_regs_PC: 0x120004be0, fetch_pred_PC: 0x120004be0
+
+** fetch queue contents **
+fetch_num: 2
+fetch_head: 0, fetch_tail: 2
+idx:  0: inst: `ldq r27,-31960(r29)'
+         regs_PC: 0x120004bd8, pred_PC: 0x120004bdc
+idx:  1: inst: `bis r1,r1,r16'
+         regs_PC: 0x120004bdc, pred_PC: 0x120004be0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004be0, recover_PC: 0x120004bbc
+fetch_regs_PC: 0x120004bec, fetch_pred_PC: 0x120004bf0
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 2, fetch_tail: 2
+idx:  2: inst: `stq r18,64(r30)'
+         regs_PC: 0x120004be0, pred_PC: 0x120004be4
+idx:  3: inst: `stq r1,56(r30)'
+         regs_PC: 0x120004be4, pred_PC: 0x120004be8
+idx:  0: inst: `stl r17,48(r30)'
+         regs_PC: 0x120004be8, pred_PC: 0x120004bec
+idx:  1: inst: `stl r2,80(r30)'
+         regs_PC: 0x120004bec, pred_PC: 0x120004bf0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004bf0, recover_PC: 0x120004bbc
+fetch_regs_PC: 0x120004bf0, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 1
+fetch_head: 2, fetch_tail: 3
+idx:  2: inst: `jsr r26,(r27)'
+         regs_PC: 0x120004bf0, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: t
+pred_PC: 0x00000001, recover_PC: 0x12000b010
+fetch_regs_PC: 0x0000000d, fetch_pred_PC: 0x00000011
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 3, fetch_tail: 3
+idx:  3: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000001, pred_PC: 0x00000005
+idx:  0: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000005, pred_PC: 0x00000009
+idx:  1: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000009, pred_PC: 0x0000000d
+idx:  2: inst: `addq r31,r31,r31'
+         regs_PC: 0x0000000d, pred_PC: 0x00000011
+** fetch stage state **
+spec_mode: t
+pred_PC: 0x00000011, recover_PC: 0x12000b010
+fetch_regs_PC: 0x0000001d, fetch_pred_PC: 0x00000021
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 3, fetch_tail: 3
+idx:  3: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000011, pred_PC: 0x00000015
+idx:  0: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000015, pred_PC: 0x00000019
+idx:  1: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000019, pred_PC: 0x0000001d
+idx:  2: inst: `addq r31,r31,r31'
+         regs_PC: 0x0000001d, pred_PC: 0x00000021
+** fetch stage state **
+spec_mode: t
+pred_PC: 0x00000021, recover_PC: 0x12000b010
+fetch_regs_PC: 0x0000002d, fetch_pred_PC: 0x00000031
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 3, fetch_tail: 3
+idx:  3: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000021, pred_PC: 0x00000025
+idx:  0: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000025, pred_PC: 0x00000029
+idx:  1: inst: `addq r31,r31,r31'
+         regs_PC: 0x00000029, pred_PC: 0x0000002d
+idx:  2: inst: `addq r31,r31,r31'
+         regs_PC: 0x0000002d, pred_PC: 0x00000031
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000021, recover_PC: 0x12000b010
+fetch_regs_PC: 0x12000b01c, fetch_pred_PC: 0x12000b020
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 0, fetch_tail: 0
+idx:  0: inst: `ldah r29,8192(r27)'
+         regs_PC: 0x12000b010, pred_PC: 0x12000b014
+idx:  1: inst: `lda r29,3600(r29)'
+         regs_PC: 0x12000b014, pred_PC: 0x12000b018
+idx:  2: inst: `addq r31,17,r0'
+         regs_PC: 0x12000b018, pred_PC: 0x12000b01c
+idx:  3: inst: `ldq r1,-30880(r29)'
+         regs_PC: 0x12000b01c, pred_PC: 0x12000b020
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b020, recover_PC: 0x12000b010
+fetch_regs_PC: 0x12000b02c, fetch_pred_PC: 0x12000b038
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 0, fetch_tail: 0
+idx:  0: inst: `ldq r1,0(r1)'
+         regs_PC: 0x12000b020, pred_PC: 0x12000b024
+idx:  1: inst: `addq r16,r1,r16'
+         regs_PC: 0x12000b024, pred_PC: 0x12000b028
+idx:  2: inst: `call_pal callsys '
+         regs_PC: 0x12000b028, pred_PC: 0x12000b02c
+idx:  3: inst: `beq r19,0x12000b038'
+         regs_PC: 0x12000b02c, pred_PC: 0x12000b038
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b02c, recover_PC: 0x12000b010
+fetch_regs_PC: 0x12000b03c, fetch_pred_PC: 0x12000b040
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 2, fetch_tail: 2
+idx:  2: inst: `call_pal callsys '
+         regs_PC: 0x12000b028, pred_PC: 0x12000b02c
+idx:  3: inst: `beq r19,0x12000b038'
+         regs_PC: 0x12000b02c, pred_PC: 0x12000b038
+idx:  0: inst: `ldq r0,-30880(r29)'
+         regs_PC: 0x12000b038, pred_PC: 0x12000b03c
+idx:  1: inst: `ldq r28,-30880(r29)'
+         regs_PC: 0x12000b03c, pred_PC: 0x12000b040
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b02c, recover_PC: 0x12000b010
+fetch_regs_PC: 0x12000b03c, fetch_pred_PC: 0x12000b040
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 2, fetch_tail: 2
+idx:  2: inst: `call_pal callsys '
+         regs_PC: 0x12000b028, pred_PC: 0x12000b02c
+idx:  3: inst: `beq r19,0x12000b038'
+         regs_PC: 0x12000b02c, pred_PC: 0x12000b038
+idx:  0: inst: `ldq r0,-30880(r29)'
+         regs_PC: 0x12000b038, pred_PC: 0x12000b03c
+idx:  1: inst: `ldq r28,-30880(r29)'
+         regs_PC: 0x12000b03c, pred_PC: 0x12000b040
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b02c, recover_PC: 0x12000b010
+fetch_regs_PC: 0x12000b03c, fetch_pred_PC: 0x12000b040
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 2, fetch_tail: 2
+idx:  2: inst: `call_pal callsys '
+         regs_PC: 0x12000b028, pred_PC: 0x12000b02c
+idx:  3: inst: `beq r19,0x12000b038'
+         regs_PC: 0x12000b02c, pred_PC: 0x12000b038
+idx:  0: inst: `ldq r0,-30880(r29)'
+         regs_PC: 0x12000b038, pred_PC: 0x12000b03c
+idx:  1: inst: `ldq r28,-30880(r29)'
+         regs_PC: 0x12000b03c, pred_PC: 0x12000b040
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b02c, recover_PC: 0x12000b010
+fetch_regs_PC: 0x12000b03c, fetch_pred_PC: 0x12000b040
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 2, fetch_tail: 2
+idx:  2: inst: `call_pal callsys '
+         regs_PC: 0x12000b028, pred_PC: 0x12000b02c
+idx:  3: inst: `beq r19,0x12000b038'
+         regs_PC: 0x12000b02c, pred_PC: 0x12000b038
+idx:  0: inst: `ldq r0,-30880(r29)'
+         regs_PC: 0x12000b038, pred_PC: 0x12000b03c
+idx:  1: inst: `ldq r28,-30880(r29)'
+         regs_PC: 0x12000b03c, pred_PC: 0x12000b040
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b02c, recover_PC: 0x12000b010
+fetch_regs_PC: 0x12000b03c, fetch_pred_PC: 0x12000b040
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 2, fetch_tail: 2
+idx:  2: inst: `call_pal callsys '
+         regs_PC: 0x12000b028, pred_PC: 0x12000b02c
+idx:  3: inst: `beq r19,0x12000b038'
+         regs_PC: 0x12000b02c, pred_PC: 0x12000b038
+idx:  0: inst: `ldq r0,-30880(r29)'
+         regs_PC: 0x12000b038, pred_PC: 0x12000b03c
+idx:  1: inst: `ldq r28,-30880(r29)'
+         regs_PC: 0x12000b03c, pred_PC: 0x12000b040
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b02c, recover_PC: 0x12000b010
+fetch_regs_PC: 0x12000b03c, fetch_pred_PC: 0x12000b040
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 2, fetch_tail: 2
+idx:  2: inst: `call_pal callsys '
+         regs_PC: 0x12000b028, pred_PC: 0x12000b02c
+idx:  3: inst: `beq r19,0x12000b038'
+         regs_PC: 0x12000b02c, pred_PC: 0x12000b038
+idx:  0: inst: `ldq r0,-30880(r29)'
+         regs_PC: 0x12000b038, pred_PC: 0x12000b03c
+idx:  1: inst: `ldq r28,-30880(r29)'
+         regs_PC: 0x12000b03c, pred_PC: 0x12000b040
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b02c, recover_PC: 0x12000b010
+fetch_regs_PC: 0x12000b03c, fetch_pred_PC: 0x12000b040
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 2, fetch_tail: 2
+idx:  2: inst: `call_pal callsys '
+         regs_PC: 0x12000b028, pred_PC: 0x12000b02c
+idx:  3: inst: `beq r19,0x12000b038'
+         regs_PC: 0x12000b02c, pred_PC: 0x12000b038
+idx:  0: inst: `ldq r0,-30880(r29)'
+         regs_PC: 0x12000b038, pred_PC: 0x12000b03c
+idx:  1: inst: `ldq r28,-30880(r29)'
+         regs_PC: 0x12000b03c, pred_PC: 0x12000b040
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b02c, recover_PC: 0x12000b010
+fetch_regs_PC: 0x12000b03c, fetch_pred_PC: 0x12000b040
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 2, fetch_tail: 2
+idx:  2: inst: `call_pal callsys '
+         regs_PC: 0x12000b028, pred_PC: 0x12000b02c
+idx:  3: inst: `beq r19,0x12000b038'
+         regs_PC: 0x12000b02c, pred_PC: 0x12000b038
+idx:  0: inst: `ldq r0,-30880(r29)'
+         regs_PC: 0x12000b038, pred_PC: 0x12000b03c
+idx:  1: inst: `ldq r28,-30880(r29)'
+         regs_PC: 0x12000b03c, pred_PC: 0x12000b040
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x12000b040, recover_PC: 0x12000b010
+fetch_regs_PC: 0x12000b048, fetch_pred_PC: 0x120004aec
+
+** fetch queue contents **
+fetch_num: 3
+fetch_head: 2, fetch_tail: 1
+idx:  2: inst: `ldq r0,0(r0)'
+         regs_PC: 0x12000b040, pred_PC: 0x12000b044
+idx:  3: inst: `stq r16,0(r28)'
+         regs_PC: 0x12000b044, pred_PC: 0x12000b048
+idx:  0: inst: `ret r31,(r26)'
+         regs_PC: 0x12000b048, pred_PC: 0x120004aec
+** fetch stage state **
+spec_mode: t
+pred_PC: 0x120004aec, recover_PC: 0x120004bf4
+fetch_regs_PC: 0x120004af8, fetch_pred_PC: 0x120004afc
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 1, fetch_tail: 1
+idx:  1: inst: `ldq r19,-31936(r29)'
+         regs_PC: 0x120004aec, pred_PC: 0x120004af0
+idx:  2: inst: `ldl r1,32(r30)'
+         regs_PC: 0x120004af0, pred_PC: 0x120004af4
+idx:  3: inst: `s8addq r1,r19,r5'
+         regs_PC: 0x120004af4, pred_PC: 0x120004af8
+idx:  0: inst: `ldq r18,0(r5)'
+         regs_PC: 0x120004af8, pred_PC: 0x120004afc
+** fetch stage state **
+spec_mode: t
+pred_PC: 0x120004afc, recover_PC: 0x120004bf4
+fetch_regs_PC: 0x120004afc, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 1
+fetch_head: 1, fetch_tail: 2
+idx:  1: inst: `bne r18,0x120004b08'
+         regs_PC: 0x120004afc, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004afc, recover_PC: 0x120004bf4
+fetch_regs_PC: 0x120004c00, fetch_pred_PC: 0x120004c00
+
+** fetch queue contents **
+fetch_num: 3
+fetch_head: 0, fetch_tail: 3
+idx:  0: inst: `ldah r29,8192(r26)'
+         regs_PC: 0x120004bf4, pred_PC: 0x120004bf8
+idx:  1: inst: `addq r0,1,r6'
+         regs_PC: 0x120004bf8, pred_PC: 0x120004bfc
+idx:  2: inst: `ldq r18,64(r30)'
+         regs_PC: 0x120004bfc, pred_PC: 0x120004c00
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004c00, recover_PC: 0x120004bf4
+fetch_regs_PC: 0x120004c0c, fetch_pred_PC: 0x120004c10
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 3, fetch_tail: 3
+idx:  3: inst: `lda r29,29228(r29)'
+         regs_PC: 0x120004c00, pred_PC: 0x120004c04
+idx:  0: inst: `ldq r1,56(r30)'
+         regs_PC: 0x120004c04, pred_PC: 0x120004c08
+idx:  1: inst: `ldl r17,48(r30)'
+         regs_PC: 0x120004c08, pred_PC: 0x120004c0c
+idx:  2: inst: `bis r0,r0,r16'
+         regs_PC: 0x120004c0c, pred_PC: 0x120004c10
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004c10, recover_PC: 0x120004bf4
+fetch_regs_PC: 0x120004c14, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 2
+fetch_head: 3, fetch_tail: 1
+idx:  3: inst: `ldl r2,80(r30)'
+         regs_PC: 0x120004c10, pred_PC: 0x120004c14
+idx:  0: inst: `bne r6,0x120004ca4'
+         regs_PC: 0x120004c14, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x120004bf4
+fetch_regs_PC: 0x120004ca4, fetch_pred_PC: 0x120004ca4
+
+** fetch queue contents **
+fetch_num: 0
+fetch_head: 0, fetch_tail: 0
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x120004bf4
+fetch_regs_PC: 0x120004cb0, fetch_pred_PC: 0x120004cb4
+
+** fetch queue contents **
+fetch_num: 4
+fetch_head: 0, fetch_tail: 0
+idx:  0: inst: `ldq r4,-31936(r29)'
+         regs_PC: 0x120004ca4, pred_PC: 0x120004ca8
+idx:  1: inst: `subl r17,1,r17'
+         regs_PC: 0x120004ca8, pred_PC: 0x120004cac
+idx:  2: inst: `s8addq r2,r4,r3'
+         regs_PC: 0x120004cac, pred_PC: 0x120004cb0
+idx:  3: inst: `stq r0,0(r3)'
+         regs_PC: 0x120004cb0, pred_PC: 0x120004cb4
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x120004cb4, recover_PC: 0x120004bf4
+fetch_regs_PC: 0x120004cb4, fetch_pred_PC: 0x00000001
+
+** fetch queue contents **
+fetch_num: 1
+fetch_head: 0, fetch_tail: 1
+idx:  0: inst: `ble r17,0x120004ccc'
+         regs_PC: 0x120004cb4, pred_PC: 0x00000001
+** fetch stage state **
+spec_mode: f
+pred_PC: 0x00000001, recover_PC: 0x120004bf4
+fetch_regs_PC: 0x120004cc0, fetch_pred_PC: 0x120004cc0
+
+** fetch queue contents **
+fetch_num: 2
+fetch_head: 0, fetch_tail: 2
+idx:  0: inst: `addq r16,r18,r0'
+         regs_PC: 0x120004cb8, pred_PC: 0x120004cbc
+idx:  1: inst: `stq r0,0(r16)'
+         regs_PC: 0x120004cbc, pred_PC: 0x120004cc0

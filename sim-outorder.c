@@ -4718,8 +4718,8 @@ sim_main(void)
         if (!ruu_fetch_issue_delay)
         {
             ruu_fetch();
-            //if((1500 < sim_cycle) && (sim_cycle < 2000))
-                //fetch_dump(fetch_contents);
+            if((1500 < sim_cycle) && (sim_cycle < 2000))
+                fetch_dump(fetch_contents);
         }
         else
             ruu_fetch_issue_delay--;
